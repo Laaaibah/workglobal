@@ -1,0 +1,233 @@
+---
+// about.astro — About Us / Behind Work Global page
+import Layout from '../layouts/Layout.astro';
+import bgImage from '../assets/background.png?url';
+import TeamCard from '../components/TeamCard.astro';
+
+// ─── Team data — edit freely ───────────────────────────
+const team = [
+  { name: "Employee Name", role: "Co Founder" },
+  { name: "Employee Name", role: "Co Founder" },
+  { name: "Employee Name", role: "Co Founder" },
+  { name: "Employee Name", role: "Co Founder" },
+  { name: "Employee Name", role: "Co Founder" },
+  { name: "Employee Name", role: "Co Founder" },
+  { name: "Employee Name", role: "Co Founder" },
+  { name: "Employee Name", role: "Co Founder" },
+];
+
+/*
+ * Card positions are hand-tuned to match the reference image:
+ * a globe centred in the scene, cards orbiting it on an elliptical path.
+ * The globe sits at ~50% horizontally, ~60% vertically inside .orbit-scene.
+ * Positions are percentages of the scene container (900 × 560 px).
+ *
+ * Each entry: { x, y } = top-left corner of the card as % of scene dims.
+ * Cards are 120px wide × ~160px tall.
+ */
+const positions = [
+  // top wavy line (4 cards)
+  { x: 15, y: 5 },    // left
+  { x: 37, y: 0 },    // center-left
+  { x: 63, y: 0 },    // center-right
+  { x: 85, y: 5 },    // right
+  // bottom wavy line (4 cards)
+  { x: 8,  y: 72 },   // far left
+  { x: 30, y: 82 },   // left
+  { x: 70, y: 82 },   // right
+  { x: 92, y: 72 },   // far right
+];
+---
+
+<Layout title="About Us - WorkGlobal" navActive="about">
+  <style define:vars={{ bgImage: `url(${bgImage})` }}>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #053F5C;
+      --light-blue: #86C5FF;
+      --orange: #FFA62B;
+      --bg: #ddeef8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      min-height: 100vh;
+    }
+
+    /* ── page background image ── */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      background-image: var(--bgImage);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 0.6;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ── page layout ── */
+    .about-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 56px 24px 80px;
+      min-height: 100vh;
+    }
+
+    /* ── header ── */
+    .about-header {
+      text-align: center;
+      max-width: 680px;
+      margin-bottom: 48px;
+    }
+
+    .about-header h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    .about-header p {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #4a6a80;
+      line-height: 1.7;
+    }
+
+    /* ── orbit scene container ── */
+    .orbit-scene {
+      position: relative;
+      width: 100%;
+      max-width: 960px;
+      /* fixed aspect ratio so % positions work consistently */
+      aspect-ratio: 960 / 580;
+    }
+
+    /* ── the circle ── */
+    .globe-wrap {
+      position: absolute;
+      /* centre of scene */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -46%);
+      /* circle is ~55% of scene width */
+      width: 55%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 38% 30%, #86C5FF 0%, #378ADD 30%, #053F5C 80%);
+      box-shadow: 
+        0 0 80px rgba(5, 63, 92, 0.4),
+        0 0 60px rgba(5, 63, 92, 0.3),
+        0 0 40px rgba(5, 63, 92, 0.2),
+        0 15px 50px rgba(5, 63, 92, 0.35),
+        inset -30px -30px 80px rgba(0, 0, 0, 0.2);
+    }
+
+    /* subtle orbit ring behind the cards */
+    .orbit-ring {
+      display: none;
+    }
+
+    /* ── cards positioned absolutely ── */
+    .card-slot {
+      position: absolute;
+      /* increased card size */
+      width: 160px;
+    }
+
+    /* ── wavy lines above and below circle ── */
+    .orbit-scene::before,
+    .orbit-scene::after {
+      content: '';
+      position: absolute;
+      left: 5%;
+      width: 90%;
+      height: 3px;
+      pointer-events: none;
+      opacity: 0.25;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 20"><path d="M0,10 Q50,0 100,10 T200,10 T300,10 T400,10 T500,10 T600,10 T700,10 T800,10 T900,10 T1000,10" fill="none" stroke="%23053F5C" stroke-width="2"/></svg>');
+      background-repeat: repeat-x;
+      background-size: 200px 20px;
+    }
+
+    .orbit-scene::before {
+      top: 12%;
+    }
+
+    .orbit-scene::after {
+      bottom: 12%;
+      transform: scaleY(-1);
+    }
+
+    /* ── responsive fallback: grid below 640px ── */
+    @media (max-width: 640px) {
+      .orbit-scene {
+        aspect-ratio: unset;
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        padding: 16px;
+        background: transparent;
+      }
+      .globe-wrap,
+      .orbit-ring {
+        display: none;
+      }
+      .card-slot {
+        position: static;
+        width: 100%;
+      }
+    }
+  </style>
+
+  <div class="bg-layer"></div>
+
+  <main class="about-page">
+
+    <!-- Header -->
+    <div class="about-header">
+      <h1>Behind Work Global</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </p>
+    </div>
+
+    <!-- Globe + Cards -->
+    <div class="orbit-scene">
+
+      <!-- Subtle orbit ellipse ring -->
+      <div class="orbit-ring"></div>
+
+      <!-- Blue circle in center -->
+      <div class="globe-wrap"></div>
+
+      <!-- Team cards placed at pre-calculated orbit positions -->
+      {/* 
+      {team.map((member, i) => (
+        <div
+          class="card-slot"
+          style={`
+            left: ${positions[i]?.x ?? 10}%;
+            top:  ${positions[i]?.y ?? 10}%;
+          `}
+        >
+          <TeamCard name={member.name} role={member.role} image={member.image} />
+        </div>
+      ))}
+      */}
+
+    </div>
+  </main>
+</Layout>

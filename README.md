@@ -1,46 +1,69 @@
-# Astro Starter Kit: Basics
+# Frontend - Astro Project
 
-```sh
-npm create astro@latest -- --template basics
+A modern web frontend built with Astro, React, and Tailwind CSS with animation support.
+
+## Features
+
+- ⚡ **Astro** - Fast static site generation
+- ✨ **Animations** - Framer Motion and AOS (Animate On Scroll)
+- 🎨 **Tailwind CSS** - Utility-first CSS framework
+- ⚛️ **React** - Interactive components
+- 📱 **Responsive Design** - Mobile-first approach
+
+## Project Structure
+
+```
+frontend/
+├── src/
+│   ├── components/     # Reusable Astro and React components
+│   ├── layouts/        # Layout templates
+│   ├── pages/          # Page components (routes)
+│   └── styles/         # Global CSS and Tailwind config
+├── public/             # Static assets
+├── astro.config.mjs    # Astro configuration
+├── tailwind.config.mjs # Tailwind configuration
+└── package.json        # Dependencies
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Getting Started
 
-## 🚀 Project Structure
+### Install Dependencies
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```bash
+npm install
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+### Development Server
 
-## 🧞 Commands
+```bash
+npm run dev
+```
 
-All commands are run from the root of the project, from a terminal:
+Visit `http://localhost:3000` to see your site.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Build for Production
 
-## 👀 Want to learn more?
+```bash
+npm run build
+npm run preview
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Animation Libraries
+
+- **Framer Motion** - Powerful React animation library
+- **AOS** - Animate elements on scroll
+- **Tailwind CSS Animations** - Built-in utility animations
+
+## Customization
+
+- Edit components in `src/components/`
+- Add new pages in `src/pages/`
+- Modify styles in `src/styles/global.css`
+- Configure animations in `tailwind.config.mjs`
+
+## Learn More
+
+- [Astro Documentation](https://docs.astro.build)
+- [Tailwind CSS](https://tailwindcss.com)
+- [Framer Motion](https://www.framer.com/motion)
+- [AOS Library](https://michalsnik.github.io/aos)
