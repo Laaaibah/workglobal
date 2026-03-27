@@ -13,17 +13,17 @@ const navItems = [
 ];
 ---
 
-<header class="relative w-full flex justify-center items-center px-6 sm:px-12 pt-10 pb-8 z-[100]">
+<header class="absolute top-0 left-0 w-full flex justify-center items-center px-6 sm:px-12 pt-10 pb-8 z-[100]">
   <!-- Logo Section: Absolutely positioned on desktop, tighter gap -->
   <a 
     href="/" 
-    class="absolute left-6 sm:left-12 flex items-center gap-1 no-underline z-[101] transition-transform hover:scale-105 max-[850px]:static mb-6 min-[851px]:mb-0 min-[851px]:-translate-y-1"
+    class="absolute left-6 sm:left-12 flex items-center gap-3 no-underline z-[101] transition-transform hover:scale-105 max-[850px]:static mb-6 min-[851px]:mb-0 min-[851px]:-translate-y-1"
   >
     <!-- Logo Icon -->
     <img src={logoIcon} alt="Icon" class="w-16 sm:w-20 h-auto" />
     
     <!-- Logo Text Image: Higher size, better baseline -->
-    <img src={logoImage} alt="WorkGlobal" class="h-12 sm:h-16 w-auto translate-y-2" />
+    <img src={logoImage} alt="WorkGlobal" class="h-12 sm:h-16 w-auto translate-y-2 hidden sm:block" />
   </a>
 
   <!-- Navigation Pill: Centered -->

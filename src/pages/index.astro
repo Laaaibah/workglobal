@@ -1,69 +1,128 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import bgImage from '../assets/background.png?url';
+import bgImage from '../assets/homepage.png?url';
+import logoImage from '../assets/logo.png?url';
+import FeatureSection from '../components/FeatureSection.astro';
+import EventsSection from '../components/EventsSection.astro';
+import feature1 from '../assets/image1.jpeg?url';
+import feature2 from '../assets/image2.jpeg?url';
+import feature3 from '../assets/image3.jpeg?url';
+import layeryBg from '../assets/background.png?url';
+
+const playStoreBadge = "https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg";
+const appStoreBadge = "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg";
 ---
 
 <Layout title="WorkGlobal - Swipe. Match. Work" navActive="home">
-  <style define:vars={{ bgImage: `url(${bgImage})` }}>
-    .bg-layer {
-      position: fixed;
-      inset: 0;
-      background-image: var(--bgImage);
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      opacity: 0.6;
-      z-index: -1;
-      pointer-events: none;
-    }
-  </style>
+  <main class="relative w-full flex flex-col items-center justify-center overflow-hidden">
+    
+    <!-- Hero Section: Muzz-Style Responsive -->
+    <section class="relative w-full flex flex-col items-center justify-center overflow-hidden min-h-screen md:min-h-[56.25vw]">
+      <!-- Full Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src={bgImage} 
+          alt="" 
+          class="w-full h-full object-cover md:h-auto md:object-contain object-center"
+        />
+      </div>
 
-  <div class="bg-layer"></div>
-
-  <section class="w-full min-h-screen px-4 sm:px-8 lg:px-12 py-12">
-    <div class="mx-auto max-w-6xl">
-      <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-        <div>
-          <p class="inline-flex items-center rounded-full bg-white/70 px-4 py-1.5 text-xs font-bold tracking-[0.12em] text-[#053F5C]">
-            GLOBAL CAREER PLATFORM
-          </p>
-          <h1 class="mt-5 text-4xl sm:text-5xl lg:text-6xl font-black uppercase leading-tight text-[#053F5C]">
-            Swipe. Match. Work.
-          </h1>
-          <p class="mt-5 max-w-xl text-base sm:text-lg leading-relaxed text-[#1d4f6a]">
-            Find opportunities that actually fit your skills. WorkGlobal connects talent and companies across borders with a fast, modern matching flow.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="/support" class="rounded-full bg-[#053F5C] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#0b5b84]">
-              Talk to Support
-            </a>
-            <a href="/about" class="rounded-full border border-[#053F5C]/40 bg-white/70 px-6 py-3 text-sm font-bold text-[#053F5C] transition hover:bg-white">
-              Explore WorkGlobal
-            </a>
-          </div>
+      <!-- Content on top of image (Vertically & Horizontally Centered) -->
+      <div class="relative z-10 flex flex-col items-center text-center px-4 max-w-4xl mx-auto" data-aos="fade-up">
+        <!-- Main Logo: Always visible (Restored for mobile) -->
+        <div class="mb-4">
+          <img 
+            src={logoImage} 
+            alt="WorkGlobal" 
+            class="h-24 sm:h-32 md:h-40 w-auto"
+          />
         </div>
 
-        <div class="rounded-[2rem] bg-white/70 p-5 sm:p-7 shadow-[0_20px_50px_rgba(5,63,92,0.18)] backdrop-blur-sm">
-          <div class="grid gap-4 sm:grid-cols-2">
-            <article class="rounded-2xl bg-[#053F5C] p-5 text-white">
-              <p class="text-xs font-semibold tracking-[0.1em]">ACTIVE ROLES</p>
-              <p class="mt-2 text-3xl font-black">12k+</p>
-              <p class="mt-1 text-xs text-[#bfe3ff]">Across product, design, data, and engineering.</p>
-            </article>
-            <article class="rounded-2xl bg-[#86C5FF] p-5 text-[#053F5C]">
-              <p class="text-xs font-semibold tracking-[0.1em]">COUNTRIES</p>
-              <p class="mt-2 text-3xl font-black">120+</p>
-              <p class="mt-1 text-xs text-[#0a4f72]">Verified global employers and remote teams.</p>
-            </article>
-            <article class="rounded-2xl bg-white p-5 text-[#053F5C] sm:col-span-2 border border-[#053F5C]/10">
-              <p class="text-xs font-semibold tracking-[0.1em]">WHY PEOPLE STAY</p>
-              <p class="mt-2 text-sm leading-relaxed">
-                Smart matching reduces noise, profile-first applications improve response rates, and one dashboard helps you track every conversation.
-              </p>
-            </article>
-          </div>
+        <!-- App Store Links: Side-by-side even on mobile -->
+        <div class="flex flex-row items-center justify-center gap-4 sm:gap-6 mt-4">
+          <a 
+            href="https://instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="transition-transform hover:scale-105 active:scale-95"
+          >
+            <img 
+              src={playStoreBadge} 
+              alt="Get it on Google Play" 
+              class="h-10 sm:h-14 md:h-16 w-auto"
+            />
+          </a>
+          <a 
+            href="https://instagram.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="transition-transform hover:scale-105 active:scale-95"
+          >
+            <img 
+              src={appStoreBadge} 
+              alt="Download on the App Store" 
+              class="h-10 sm:h-14 md:h-16 w-auto"
+            />
+          </a>
         </div>
       </div>
+    </section>
+
+    <!-- Features Group Content (Fixed Background Across Both Sections) -->
+    <div 
+      class="relative w-full bg-cover bg-center bg-no-repeat bg-fixed isolate"
+      style={`background-image: url(${layeryBg});`}
+    >
+      <!-- Subdued white tint overlay (Fixed Layering) -->
+      <div class="absolute inset-0 bg-white/25 backdrop-blur-[2px] -z-10"></div>
+
+      <!-- Features Section 1 (Left Phones, Right Text) -->
+      <FeatureSection 
+        tagline="How it works"
+        title="The match is waiting for you."
+        images={[feature1, feature2, feature3]}
+        layout="left"
+        steps={[
+          { number: "01", title: "Build Your Presence", description: "Showcase your global achievements and skills with a profile that stands out across borders.", color: "bg-[#053F5C]" },
+          { number: "02", title: "Swipe & Match", description: "Explore verified opportunities tailored specifically to your data-driven matching score.", color: "bg-[#86C5FF]", textColor: "text-[#053F5C]" },
+          { number: "03", title: "Connect Instantly", description: "Real-time chat and transparent tracking keep you in the loop through every hiring stage.", color: "bg-white", textColor: "text-[#053F5C]" },
+        ]}
+      />
+
+      <!-- Features Section 2 (Right Phones, Left Text, Reversed Stack & Tilt) -->
+      <FeatureSection 
+        tagline="Discover Success"
+        title="Your global journey starts here."
+        images={[feature3, feature1, feature2]}
+        layout="right"
+        reverseStack={true}
+        tiltDirection="right"
+        buttonText="Learn More"
+        steps={[
+          { number: "04", title: "AI-Driven Insights", description: "Get personalized feedback on your applications based on global market trends and standards.", color: "bg-[#053F5C]" },
+          { number: "05", title: "Verified Employers", description: "Connect only with companies that meet our strict transparency and ethical standards.", color: "bg-[#86C5FF]", textColor: "text-[#053F5C]" },
+        ]}
+      />
+
+      <!-- Events Section (Infinite Marquee) - Now part of the fixed background group -->
+      <EventsSection 
+        tagline="Upcoming Events"
+        title="Never miss a chance to connect."
+        events={[
+          { type: 'image', src: feature1, title: 'Global Tech Summit', subtitle: 'Networking' },
+          { type: 'image', src: feature2, title: 'Freelance Meetup', subtitle: 'Social' },
+          { type: 'image', src: feature3, title: 'Creative Workshop', subtitle: 'Learning' },
+          { type: 'image', src: feature1, title: 'Career Coaching', subtitle: 'Personal Growth' },
+          { type: 'image', src: feature2, title: 'Design Sprint 2024', subtitle: 'Innovation' },
+        ]}
+      />
     </div>
-  </section>
+  </main>
 </Layout>
+
+<style>
+  /* Custom animations if extra polish is needed */
+  main {
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.2) 100%);
+  }
+</style>
