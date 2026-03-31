@@ -4,6 +4,7 @@ import bgImage from '../assets/homepage.png?url';
 import logoImage from '../assets/logo.png?url';
 import FeatureSection from '../components/FeatureSection.astro';
 import EventsSection from '../components/EventsSection.astro';
+import ComparisonSection from '../components/ComparisonSection.astro';
 import logoIcon from '../assets/logo icon hi.png?url';
 import feature1 from '../assets/image1.jpeg?url';
 import feature2 from '../assets/image2.jpeg?url';
@@ -153,6 +154,7 @@ const appStoreBadge = "https://tools.applemediaservices.com/api/badges/download-
         images={[feature1, feature2, feature3]}
         layout="left"
         swipeable={true}
+        centered={true}
         steps={[]}
         stats={[
           { icon: 'globe', value: '600,000', label: 'Successes' },
@@ -185,9 +187,9 @@ const appStoreBadge = "https://tools.applemediaservices.com/api/badges/download-
       </section>
 
       <!-- Role-Based Features Wrapper (Content toggled by entry gate choice) -->
-      <div id="role-features-container" class="relative w-full min-h-[500px]">
+      <div id="role-features-container" class="relative w-full">
         {Object.entries(content.homeFeatures).map(([role, sections]) => (
-          <div data-role-content={role} class="hidden opacity-0 transition-opacity duration-700">
+          <div data-role-content={role} class="hidden opacity-0 transition-opacity duration-700 w-full flex flex-col">
             {sections.map((section, idx) => (
               <FeatureSection 
                 tagline={section.tagline}
@@ -200,22 +202,25 @@ const appStoreBadge = "https://tools.applemediaservices.com/api/badges/download-
                 steps={section.steps}
               />
             ))}
+
+            <!-- Conditionally render sections based on role -->
+            {role === 'organization' ? (
+              <ComparisonSection title="Recruiting is evolving." />
+            ) : (
+              <EventsSection 
+                tagline="Upcoming Events"
+                title="Global industry events we recommend."
+                events={content.events.map((event, i) => ({
+                  type: 'image',
+                  src: [feature1, feature2, feature3][i % 3],
+                  title: event.title,
+                  subtitle: `${event.location} • ${event.focus.split(',')[0]}`,
+                }))}
+              />
+            )}
           </div>
         ))}
       </div>
-
-
-      <!-- Events Section (Infinite Marquee) - Now part of the fixed background group -->
-      <EventsSection 
-        tagline="Upcoming Events"
-        title="Global industry events we recommend."
-        events={content.events.map((event, i) => ({
-          type: 'image',
-          src: [feature1, feature2, feature3][i % 3],
-          title: event.title,
-          subtitle: `${event.location} • ${event.focus.split(',')[0]}`,
-        }))}
-      />
     </div>
   </main>
 </Layout>

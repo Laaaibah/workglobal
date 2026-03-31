@@ -63,20 +63,20 @@ const { images, align = 'left', reverseStack = false, tiltDirection = 'left', sw
   </div>
 ) : (
   <!-- ═══ STATIC PHONE STACK MODE (Original) ═══ -->
-  <div class={`flex justify-center items-center ${align === 'left' ? 'lg:justify-start' : 'lg:justify-end'} -space-x-32 sm:-space-x-44 phone-stack-container h-[550px] isolate`}>
+  <div class={`flex justify-center items-center ${align === 'left' ? 'lg:justify-start' : 'lg:justify-end'} -space-x-24 sm:-space-x-32 md:-space-x-44 phone-stack-container h-[420px] sm:h-[550px] isolate scale-[0.8] sm:scale-100 transition-transform duration-500`}>
     {images.map((image, i) => {
       const configIndex = reverseStack ? (2 - i) : i;
       const tiltMult = tiltDirection === 'right' ? 1 : -1;
       const configs = [
-        { rotate: `${12 * tiltMult}deg`, z: "10", scale: "0.90", opacity: "0.8", delay: 200, shadow: "shadow-lg" },
-        { rotate: `${6 * tiltMult}deg`,  z: "20", scale: "0.95", opacity: "0.9", delay: 100, shadow: "shadow-2xl" },
+        { rotate: `${8 * tiltMult}deg`, z: "10", scale: "0.85", opacity: "0.8", delay: 200, shadow: "shadow-lg" },
+        { rotate: `${4 * tiltMult}deg`,  z: "20", scale: "0.92", opacity: "0.9", delay: 100, shadow: "shadow-2xl" },
         { rotate: "0deg",              z: "30", scale: "1.0",  opacity: "1.0", delay: 0,   shadow: "shadow-[20px_40px_100px_-20px_rgba(0,0,0,0.5)]" },
       ];
       const config = configs[configIndex] || configs[2];
 
       return (
         <div
-          class={`feature-card relative w-[240px] h-[420px] sm:w-[280px] sm:h-[500px] rounded-[3rem] border-[10px] border-white ${config.shadow} overflow-hidden transition-all duration-700 bg-black group`}
+          class={`feature-card relative w-[200px] h-[360px] sm:w-[280px] sm:h-[500px] rounded-[2.5rem] sm:rounded-[3rem] border-[6px] sm:border-[10px] border-white ${config.shadow} overflow-hidden transition-all duration-700 bg-black group`}
           style={`z-index: ${config.z}; transform: rotate(${config.rotate}) scale(${config.scale}); opacity: ${config.opacity}; transition-delay: ${config.delay}ms;`}
         >
           <div class="absolute top-0 left-0 w-full h-8 flex justify-between items-center px-8 pt-4 z-20 pointer-events-none">
@@ -135,8 +135,8 @@ const { images, align = 'left', reverseStack = false, tiltDirection = 'left', sw
 
   .swipe-stack {
     position: relative;
-    width: 280px;
-    height: 500px;
+    width: 260px;
+    height: 460px;
   }
 
   @media (min-width: 640px) {

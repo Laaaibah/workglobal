@@ -308,6 +308,18 @@ const positions = [
       }
     }
 
+    /* Larger Jazz logo: target the card by its data attribute */
+    .card-slot[data-member-name="Jazz"] .avatar-wrap {
+      width: 110px;
+      height: 64px;
+    }
+
+    .card-slot[data-member-name="Jazz"] .avatar-img {
+      width: 96%;
+      height: 96%;
+      object-fit: contain;
+    }
+
     .orbit-scene::before {
       top: 18%;
       background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" preserveAspectRatio="none"><path d="M0,350 C200,-300 400,1000 600,350 C800,-300 1000,1000 1200,350" fill="none" stroke="%23B7BDC5" stroke-width="7.2" stroke-linecap="round"/></svg>');
@@ -383,24 +395,25 @@ const positions = [
       box-shadow: 0 10px 24px rgba(5, 63, 92, 0.14);
     }
 
+    /* Remove circular blue backdrop: place logo directly */
     .member-screen-avatar {
       width: 98px;
       height: 98px;
-      border-radius: 50%;
-      overflow: hidden;
-      /* light-blue radial gradient for modal avatar */
-      background: radial-gradient(circle at 34% 26%, #EAF6FF 0%, #CFE9FF 36%, #86C5FF 100%);
-      display: grid;
-      place-items: center;
+      border-radius: 0;
+      overflow: visible;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
     }
 
     .member-screen-avatar img {
-      width: 86%;
-      height: 86%;
+      width: 90%;
+      height: auto;
       object-fit: contain;
       display: block;
       margin: 0 auto;
-      /* ensure logo is centered within the circular avatar */
       transform: translateZ(0);
     }
 
@@ -492,11 +505,9 @@ const positions = [
 
     <!-- Header -->
     <div class="about-header">
-      <h1>Behind Work Global</h1>
+      <h1>Our Trusted Clients</h1>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Join thousands of professionals and top companies who are already using workglobal. Don't Be Late to the Party. If you still aren't using workglobal you are going to be standing outside in the digital cold while everyone else is inside landing interviews.
       </p>
     </div>
 

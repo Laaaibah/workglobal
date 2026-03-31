@@ -41,10 +41,6 @@ const { title, navActive = 'home' } = Astro.props;
         <div class="entry-gate-logo-wrap">
           <img src={logoIcon} alt="WorkGlobal icon" class="entry-gate-logo" />
         </div>
-        <p class="entry-gate-kicker">HI</p>
-        <h1 id="entry-gate-title" class="entry-gate-title">Are you a Job Seeker or an Organization?</h1>
-        <p class="entry-gate-subtitle">Pick one path and jump into your WorkGlobal journey.</p>
-
         <div class="entry-gate-actions">
           <button type="button" class="entry-role-btn" data-role="job-seeker">Job Seeker</button>
           <button type="button" class="entry-role-btn" data-role="organization">Organization</button>
@@ -63,6 +59,8 @@ const { title, navActive = 'home' } = Astro.props;
     <style is:global>
       .site-shell {
         min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
         transition: filter 0.35s ease;
       }
 

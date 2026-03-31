@@ -178,7 +178,30 @@ export const content = {
       location: "Porto, Portugal",
       focus: "Talent strategy & future of work"
     }
-  ]
+  ],
+  comparison: {
+    title: "Recruiting is evolving",
+    oldWay: {
+      title: "The Old way",
+      items: [
+        { text: "Relying solely on text resumes", icon: "file-text" },
+        { text: "Spray-and-pray job posts", icon: "megaphone" },
+        { text: "Keyword searching for sourcing", icon: "search" },
+        { text: "Hiring = Local only", icon: "map-pin" },
+        { text: "Manual, slow screening", icon: "clock" }
+      ]
+    },
+    newWay: {
+      title: "The Workglobal Way",
+      items: [
+        { text: "Video pitches matter most", icon: "video" },
+        { text: "Pre-vetted, highly curated batches", icon: "check-circle" },
+        { text: "AI Instant Matching!", icon: "sparkles" },
+        { text: "Hiring = Global & Borderless", icon: "globe" },
+        { text: "AI-Assisted Screening", icon: "zap" }
+      ]
+    }
+  }
 };
 
 export default content;
