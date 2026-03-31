@@ -2,73 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import bgImage from '../assets/background.png?url';
 import FAQ from '../components/FAQ.astro';
+import logoIcon from '../assets/logo icon hi.png?url';
+import content from '../data/content.js';
 
-const faqItems = [
-  {
-    question: "What is Work Global?",
-    answer: "Work Global is a platform that connects professionals with global opportunities, making it easy to find remote and international roles.",
-  },
-  {
-    question: "How do I create an account?",
-    answer: "Simply click 'Sign Up' on the homepage, fill in your details, and you're ready to start exploring opportunities worldwide.",
-  },
-  {
-    question: "Is Work Global free to use?",
-    answer: "Yes! Basic access is completely free. We also offer premium plans with advanced features for power users.",
-  },
-  {
-    question: "How can I contact support?",
-    answer: "You can reach our support team via the contact form on this page, by email, or through our live chat available on weekdays.",
-  },
-  {
-    question: "What countries are supported?",
-    answer: "Work Global supports professionals and employers across 120+ countries. Check our coverage page for the full list.",
-  },
-  {
-    question: "Can I post jobs on Work Global?",
-    answer: "Absolutely! Employers can post jobs, manage applications, and access a global talent pool directly from their dashboard.",
-  },
-  {
-    question: "How long does it take to get a response?",
-    answer: "Our support team typically responds within 24 hours on business days. Premium users receive priority responses within 4 hours.",
-  },
-  {
-    question: "Is my data safe with Work Global?",
-    answer: "Yes. We use industry-standard encryption and never share your personal data with third parties without your consent.",
-  },
-  {
-    question: "How do I reset my password?",
-    answer: "Click 'Forgot Password' on the login page and follow the instructions sent to your registered email address.",
-  },
-  {
-    question: "Can I use Work Global on mobile?",
-    answer: "Yes! Work Global is fully responsive and also available as a mobile app on iOS and Android.",
-  },
-  {
-    question: "What payment methods are accepted?",
-    answer: "We accept all major credit cards, PayPal, and bank transfers for premium subscriptions.",
-  },
-  {
-    question: "How do I delete my account?",
-    answer: "You can request account deletion from your profile settings. Our team will process it within 7 business days.",
-  },
-  {
-    question: "Do you offer a referral program?",
-    answer: "Yes! Refer a friend and both of you get one month of premium access for free. Check your dashboard for your unique referral link.",
-  },
-  {
-    question: "Where can I find the privacy policy?",
-    answer: "Our full privacy policy is available in the footer of every page and at workglobal.com/privacy.",
-  },
-  {
-    question: "Are there webinars or tutorials?",
-    answer: "We host free weekly webinars and have a full library of video tutorials available in the Help Center.",
-  },
-  {
-    question: "Can I change my subscription plan?",
-    answer: "Yes, you can upgrade or downgrade your plan at any time from your account settings. Changes take effect on the next billing cycle.",
-  },
-];
+const jobFaqs = content.support['job-seeker'].faqs;
+const orgFaqs = content.support.organization.faqs;
+const contact = content.support.contact;
 ---
 
 <Layout title="Support Center - WorkGlobal" navActive="support">
@@ -84,8 +23,10 @@ const faqItems = [
       :root {
         --navy: #053F5C;
         --light-blue: #86C5FF;
-        --orange: #FFA62B;
+        --pink: #ec4492;
+        --accent-gradient: linear-gradient(90deg, rgb(62, 134, 198) 0%, rgb(166, 102, 170) 24.44045608108108%, rgb(236, 68, 146) 50.77597128378378%, rgb(238, 68, 84) 75.87274774774775%, rgb(240, 84, 39) 100%);
         --bg: #ddeef8;
+        --card-bg: #8dc8ee;
       }
 
       body {
@@ -105,7 +46,7 @@ const faqItems = [
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        opacity: 0.6;
+        opacity: 1;
         z-index: -1;
         pointer-events: none;
       }
@@ -114,10 +55,10 @@ const faqItems = [
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 60px;
+        gap: 96px;
         width: 100%;
         min-height: 100vh;
-        padding: 40px 20px;
+        padding: clamp(150px, 16vw, 190px) 20px 40px;
       }
 
       /* ── LEFT PANEL ── */
@@ -127,18 +68,19 @@ const faqItems = [
         display: flex;
         flex-direction: column;
         gap: 28px;
+        transform: translateX(-10px);
       }
 
       .mascot-placeholder {
-        width: 120px;
-        height: 120px;
+        width: 160px;
+        height: 160px;
         display: flex;
         align-items: center;
         justify-content: center;
       }
 
       .mascot-img {
-        width: 120px;
+        width: 160px;
         height: auto;
         display: block;
       }
@@ -179,7 +121,7 @@ const faqItems = [
         height: 44px;
         min-width: 44px;
         border-radius: 50%;
-        background-color: var(--orange);
+        background: var(--accent-gradient);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -201,27 +143,30 @@ const faqItems = [
       /* ── RIGHT PANEL — FORM CARD ── */
       .form-card {
         flex: 0 0 480px;
-        background: linear-gradient(160deg, #5bacd8 0%, var(--navy) 100%);
-        border-radius: 24px;
-        padding: 36px 32px 40px;
-        box-shadow: 0 20px 60px rgba(5, 63, 92, 0.3);
+        background: var(--card-bg);
+        border-radius: 30px;
+        padding: 42px 34px 44px;
+        box-shadow: rgb(255, 255, 255) 0px 0px 10px 0px inset;
+        opacity: 1;
+        will-change: transform;
+        transform: translateX(10px);
       }
 
       .form-group {
         display: flex;
         flex-direction: column;
-        gap: 5px;
-        margin-bottom: 16px;
+        gap: 7px;
+        margin-bottom: 18px;
       }
 
       .form-group:last-of-type {
-        margin-bottom: 24px;
+        margin-bottom: 26px;
       }
 
       .form-group label {
-        font-size: 0.78rem;
+        font-size: 0.92rem;
         font-weight: 700;
-        color: #d4eeff;
+        color: var(--navy);
         letter-spacing: 0.03em;
       }
 
@@ -230,10 +175,10 @@ const faqItems = [
         width: 100%;
         background: #ddeef8;
         border: none;
-        border-radius: 6px;
-        padding: 9px 12px;
+        border-radius: 12px;
+        padding: 11px 14px;
         font-family: 'Nunito', sans-serif;
-        font-size: 0.82rem;
+        font-size: 0.95rem;
         font-weight: 600;
         color: var(--navy);
         outline: none;
@@ -243,32 +188,37 @@ const faqItems = [
 
       .form-group input:focus,
       .form-group textarea:focus {
-        box-shadow: 0 0 0 2px var(--orange);
+        box-shadow: 0 0 0 2px var(--pink);
       }
 
       .form-group textarea {
-        height: 110px;
+        height: 120px;
       }
 
       .btn-signup {
-        width: 100%;
-        padding: 13px;
-        background-color: var(--orange);
+        width: auto;
+        min-width: 122px;
+        margin: 0 auto;
+        display: block;
+        padding: 9px 16px;
+        background: #ffffff;
         border: none;
-        border-radius: 8px;
-        color: #fff;
+        border-radius: 999px;
+        color: #053F5C;
         font-family: 'Nunito', sans-serif;
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         font-weight: 900;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         cursor: pointer;
-        transition: background 0.2s, transform 0.15s;
+        box-shadow: 0 6px 16px rgba(5, 63, 92, 0.18);
+        transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
       }
 
       .btn-signup:hover {
-        background-color: #e8931a;
+        background: #f3f8ff;
         transform: translateY(-1px);
+        box-shadow: 0 8px 18px rgba(5, 63, 92, 0.22);
       }
 
       .btn-signup:active {
@@ -279,7 +229,13 @@ const faqItems = [
       @media (max-width: 700px) {
         .page-wrapper {
           flex-direction: column;
-          gap: 40px;
+          gap: 48px;
+          padding: 136px 16px 36px;
+        }
+
+        .left-panel,
+        .form-card {
+          transform: none;
         }
 
         .form-card {
@@ -299,22 +255,7 @@ const faqItems = [
       <div class="left-panel">
 
         <div class="mascot-placeholder">
-          <!-- Replace with: <img src="/mascot.png" alt="Mascot" class="mascot-img" /> -->
-          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" width="120" height="120">
-            <rect x="30" y="20" width="60" height="48" rx="18" fill="#053F5C" />
-            <rect x="57" y="8" width="6" height="14" rx="3" fill="#053F5C" />
-            <circle cx="60" cy="7" r="5" fill="#FFA62B" />
-            <circle cx="46" cy="40" r="7" fill="#86C5FF" />
-            <circle cx="74" cy="40" r="7" fill="#86C5FF" />
-            <circle cx="47" cy="41" r="3" fill="#053F5C" />
-            <circle cx="75" cy="41" r="3" fill="#053F5C" />
-            <path d="M48 54 Q60 63 72 54" stroke="#86C5FF" stroke-width="3" fill="none" stroke-linecap="round" />
-            <rect x="36" y="70" width="48" height="32" rx="12" fill="#053F5C" />
-            <ellipse cx="22" cy="82" rx="9" ry="14" fill="#053F5C" />
-            <ellipse cx="98" cy="82" rx="9" ry="14" fill="#053F5C" />
-            <rect x="40" y="100" width="14" height="16" rx="7" fill="#053F5C" />
-            <rect x="66" y="100" width="14" height="16" rx="7" fill="#053F5C" />
-          </svg>
+          <img src={logoIcon} alt="WorkGlobal mascot" class="mascot-img" />
         </div>
 
         <div class="heading-block">
@@ -329,7 +270,7 @@ const faqItems = [
                 <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/>
               </svg>
             </div>
-            <span>+123-456-789</span>
+              <span id="contact-phone">{contact.number}</span>
           </li>
           <li>
             <div class="icon-circle">
@@ -337,7 +278,7 @@ const faqItems = [
                 <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
               </svg>
             </div>
-            <span>abcdefgh123@gmail.com</span>
+            <span id="contact-email">{contact.email}</span>
           </li>
           <li>
             <div class="icon-circle">
@@ -345,7 +286,7 @@ const faqItems = [
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
               </svg>
             </div>
-            <span>John Smith, 39 Acacia Avenue, Silhurst, SH15 6BP, United Kingdom</span>
+            <span id="contact-location">{contact.location}</span>
           </li>
         </ul>
       </div>
@@ -353,18 +294,13 @@ const faqItems = [
       <!-- RIGHT — FORM CARD -->
       <div class="form-card">
         <div class="form-group">
-          <label for="first-name">First Name</label>
-          <input type="text" id="first-name" name="first-name" autocomplete="given-name" />
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" autocomplete="name" />
         </div>
 
         <div class="form-group">
-          <label for="last-name">Last Name</label>
-          <input type="text" id="last-name" name="last-name" autocomplete="family-name" />
-        </div>
-
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" autocomplete="tel" />
+          <label for="number">Number</label>
+          <input type="tel" id="number" name="number" autocomplete="tel" />
         </div>
 
         <div class="form-group">
@@ -383,10 +319,39 @@ const faqItems = [
     </div>
 
     <!-- ── FAQ SECTION ── -->
-    <FAQ
-      items={faqItems}
-      title="Frequently Asked Questions"
-      subtitle="Everything you need to know about Work Global."
-    />
+    <div id="faq-job" data-role="jobseeker">
+      <FAQ
+        items={jobFaqs}
+        title="Frequently Asked Questions"
+        subtitle="Everything you need to know about Work Global."
+      />
+    </div>
+
+    <div id="faq-org" data-role="organization" style="display:none;">
+      <FAQ
+        items={orgFaqs}
+        title="Frequently Asked Questions"
+        subtitle="Everything you need to know about Work Global."
+      />
+    </div>
+
+    <script is:inline>
+      (() => {
+        const gateKey = 'wg-user-role';
+        const role = window.localStorage.getItem(gateKey);
+        const job = document.getElementById('faq-job');
+        const org = document.getElementById('faq-org');
+
+        if (role === 'organization') {
+          if (job) job.style.display = 'none';
+          if (org) org.style.display = 'block';
+        } else {
+          if (job) job.style.display = 'block';
+          if (org) org.style.display = 'none';
+        }
+
+        if (typeof setupFaqAccordions === 'function') setupFaqAccordions();
+      })();
+    </script>
 
 </Layout>

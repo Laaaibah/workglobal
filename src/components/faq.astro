@@ -76,7 +76,8 @@ const rightCol = items.slice(mid);
   :root {
     --navy:       #053F5C;
     --light-blue: #86C5FF;
-    --orange:     #FFA62B;
+    --orange:     #ec4492;
+    --accent-gradient: linear-gradient(90deg, rgb(62, 134, 198) 0%, rgb(166, 102, 170) 24.44045608108108%, rgb(236, 68, 146) 50.77597128378378%, rgb(238, 68, 84) 75.87274774774775%, rgb(240, 84, 39) 100%);
     --bg:         #ddeef8;
     --card-bg:    #8dc8ee;
   }
@@ -105,7 +106,10 @@ const rightCol = items.slice(mid);
   }
 
   .faq-title .highlight {
-    color: var(--orange);
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .faq-subtitle {
@@ -118,7 +122,7 @@ const rightCol = items.slice(mid);
   .faq-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px 24px;
+    gap: 28px 84px;
   }
 
   @media (max-width: 680px) {
@@ -133,7 +137,7 @@ const rightCol = items.slice(mid);
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 22px;
   }
 
   /* ── Each item ── */
@@ -184,7 +188,7 @@ const rightCol = items.slice(mid);
     height: 32px;
     min-width: 32px;
     border-radius: 8px;
-    background: var(--orange);
+    background: var(--accent-gradient);
     color: #fff;
     font-size: 1.3rem;
     font-weight: 700;
@@ -221,27 +225,39 @@ const rightCol = items.slice(mid);
 </style>
 
 <script>
-  // Accordion toggle — works with multiple FAQ instances on the same page
-  document.querySelectorAll<HTMLElement>('.faq-btn').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const item   = btn.closest<HTMLElement>('.faq-item')!;
-      const answer = item.querySelector<HTMLElement>('.faq-answer')!;
-      const isOpen = item.classList.contains('open');
+  function setupFaqAccordions() {
+    // Accordion toggle — works with multiple FAQ instances on the same page
+    document.querySelectorAll('.faq-btn').forEach((btn) => {
+      if (btn.dataset.faqBound === 'true') return;
+      btn.dataset.faqBound = 'true';
 
-      // Close all siblings in the same column
-      const col = item.closest<HTMLElement>('.faq-col')!;
-      col.querySelectorAll<HTMLElement>('.faq-item.open').forEach((openItem) => {
-        openItem.classList.remove('open');
-        const a = openItem.querySelector<HTMLElement>('.faq-answer')!;
-        a.hidden = true;
-        openItem.querySelector<HTMLElement>('.faq-btn')!.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const answer = item?.querySelector('.faq-answer');
+        const isOpen = item?.classList.contains('open');
+        if (!item || !answer) return;
+
+        // Close all siblings in the same column
+        const col = item.closest('.faq-col');
+        if (col) {
+          col.querySelectorAll('.faq-item.open').forEach((openItem) => {
+            openItem.classList.remove('open');
+            const a = openItem.querySelector('.faq-answer');
+            const openBtn = openItem.querySelector('.faq-btn');
+            if (a) a.hidden = true;
+            if (openBtn) openBtn.setAttribute('aria-expanded', 'false');
+          });
+        }
+
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.hidden = false;
+          btn.setAttribute('aria-expanded', 'true');
+        }
       });
-
-      if (!isOpen) {
-        item.classList.add('open');
-        answer.hidden = false;
-        btn.setAttribute('aria-expanded', 'true');
-      }
     });
-  });
+  }
+
+  document.addEventListener('astro:page-load', setupFaqAccordions);
+  setupFaqAccordions();
 </script>

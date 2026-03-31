@@ -74,13 +74,15 @@ const { name, role, image } = Astro.props;
 
   .member-role {
     display: inline-block;
-    background: #FFA62B;
+    background: linear-gradient(90deg, rgb(62, 134, 198) 0%, rgb(166, 102, 170) 24.44045608108108%, rgb(236, 68, 146) 50.77597128378378%, rgb(238, 68, 84) 75.87274774774775%, rgb(240, 84, 39) 100%);
     color: #ffffff;
     font-size: 0.6rem;
     font-weight: 900;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     padding: 3px 10px;
     border-radius: 999px;
+    white-space: nowrap;
+    line-height: 1;
   }
 </style>

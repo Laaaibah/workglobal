@@ -4,16 +4,92 @@ import bgImage from '../assets/homepage.png?url';
 import logoImage from '../assets/logo.png?url';
 import FeatureSection from '../components/FeatureSection.astro';
 import EventsSection from '../components/EventsSection.astro';
+import logoIcon from '../assets/logo icon hi.png?url';
 import feature1 from '../assets/image1.jpeg?url';
 import feature2 from '../assets/image2.jpeg?url';
 import feature3 from '../assets/image3.jpeg?url';
-import layeryBg from '../assets/background.png?url';
+import pageBg from '../assets/background.png?url';
+import { content } from '../data/content';
 
-const playStoreBadge = "https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg";
-const appStoreBadge = "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg";
+const playStoreBadge = "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png";
+const appStoreBadge = "https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83";
 ---
 
 <Layout title="WorkGlobal - Swipe. Match. Work" navActive="home">
+  <style define:vars={{ pageBg: `url(${pageBg})` }}>
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      background-image: var(--pageBg);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 1;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    main {
+      background: transparent;
+    }
+
+
+    .store-badge {
+      width: 240px;
+      height: 76px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      box-sizing: content-box;
+    }
+
+    .store-badge img {
+      height: 64px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+      box-sizing: content-box;
+    }
+
+    .store-badge--play img {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .store-badge--app img {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    @media (max-width: 767px) {
+      .store-badge {
+        width: 210px;
+        height: 66px;
+      }
+      .store-badge img {
+        height: 54px;
+      }
+    }
+
+    @media (max-width: 639px) {
+      .store-badge {
+        width: 180px;
+        height: 56px;
+      }
+      .store-badge img {
+        height: 44px;
+      }
+    }
+  </style>
+
+  <div class="bg-layer"></div>
+
   <main class="relative w-full flex flex-col items-center justify-center overflow-hidden">
     
     <!-- Hero Section: Muzz-Style Responsive -->
@@ -23,7 +99,7 @@ const appStoreBadge = "https://developer.apple.com/assets/elements/badges/downlo
         <img 
           src={bgImage} 
           alt="" 
-          class="w-full h-full object-cover md:h-auto md:object-contain object-center"
+          class="w-full h-full object-cover md:h-auto md:object-contain object-center opacity-90"
         />
       </div>
 
@@ -49,7 +125,7 @@ const appStoreBadge = "https://developer.apple.com/assets/elements/badges/downlo
             <img 
               src={playStoreBadge} 
               alt="Get it on Google Play" 
-              class="h-10 sm:h-14 md:h-16 w-auto"
+              class="h-[54px] sm:h-[75px] md:h-[86px] w-auto"
             />
           </a>
           <a 
@@ -69,60 +145,101 @@ const appStoreBadge = "https://developer.apple.com/assets/elements/badges/downlo
     </section>
 
     <!-- Features Group Content (Fixed Background Across Both Sections) -->
-    <div 
-      class="relative w-full bg-cover bg-center bg-no-repeat bg-fixed isolate"
-      style={`background-image: url(${layeryBg});`}
-    >
-      <!-- Subdued white tint overlay (Fixed Layering) -->
-      <div class="absolute inset-0 bg-white/25 backdrop-blur-[2px] -z-10"></div>
-
-      <!-- Features Section 1 (Left Phones, Right Text) -->
+    <div class="relative w-full isolate">
+      <!-- Swipe effect -->
       <FeatureSection 
-        tagline="How it works"
-        title="The match is waiting for you."
+        tagline=""
+        title="Connecting Talent To Global Opportunities"
         images={[feature1, feature2, feature3]}
         layout="left"
-        steps={[
-          { number: "01", title: "Build Your Presence", description: "Showcase your global achievements and skills with a profile that stands out across borders.", color: "bg-[#053F5C]" },
-          { number: "02", title: "Swipe & Match", description: "Explore verified opportunities tailored specifically to your data-driven matching score.", color: "bg-[#86C5FF]", textColor: "text-[#053F5C]" },
-          { number: "03", title: "Connect Instantly", description: "Real-time chat and transparent tracking keep you in the loop through every hiring stage.", color: "bg-white", textColor: "text-[#053F5C]" },
+        swipeable={true}
+        steps={[]}
+        stats={[
+          { icon: 'globe', value: '600,000', label: 'Successes' },
+          { icon: 'heart', value: '15 million', label: 'Jobseekers' }
         ]}
+        buttonText=""
       />
 
-      <!-- Features Section 2 (Right Phones, Left Text, Reversed Stack & Tilt) -->
-      <FeatureSection 
-        tagline="Discover Success"
-        title="Your global journey starts here."
-        images={[feature3, feature1, feature2]}
-        layout="right"
-        reverseStack={true}
-        tiltDirection="right"
-        buttonText="Learn More"
-        steps={[
-          { number: "04", title: "AI-Driven Insights", description: "Get personalized feedback on your applications based on global market trends and standards.", color: "bg-[#053F5C]" },
-          { number: "05", title: "Verified Employers", description: "Connect only with companies that meet our strict transparency and ethical standards.", color: "bg-[#86C5FF]", textColor: "text-[#053F5C]" },
-        ]}
-      />
+      <!-- Branding Banner -->
+      <section class="relative w-full py-20 px-4 sm:px-12 bg-[#8dc8ee] flex flex-col items-center justify-center text-center overflow-hidden isolate" data-aos="fade-up">
+        <!-- Logo Icons on sides as large background-like decorations -->
+        <img src={logoIcon} alt="" class="absolute left-[-5%] top-1/2 -translate-y-1/2 w-48 sm:w-80 h-auto opacity-10 pointer-events-none -z-10 blur-[1px] rotate-[-15deg] hidden lg:block" />
+        <img src={logoIcon} alt="" class="absolute right-[-5%] top-1/2 -translate-y-1/2 w-48 sm:w-80 h-auto opacity-10 pointer-events-none -z-10 blur-[1px] rotate-[15deg] hidden lg:block" />
+
+        <div class="max-w-4xl mx-auto space-y-6">
+          <h2 class="text-3xl sm:text-5xl font-black text-[#053F5C] tracking-tight">Where global matching meets local talent.</h2>
+          
+          <h3 class="text-xl sm:text-2xl font-bold text-[#053F5C] leading-snug">
+            We are the network for the global generation, connecting millions of jobseekers to world-class employers.
+          </h3>
+          
+          <p class="text-lg text-[#053F5C]/80 font-medium leading-relaxed max-w-3xl mx-auto">
+            Our mission is clear: to break down borders and create a transparent, fast-track hiring process. By using advanced matching algorithms, we empower you to find opportunities that actually fit your profile—no hidden biases, just real connections.
+          </p>
+          
+          <div class="mt-10">
+            <span class="text-lg font-bold text-[#053F5C]">Join the mission today. <a href="https://instagram.com" class="text-white hover:underline">Download the app</a> and start your journey.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Role-Based Features Wrapper (Content toggled by entry gate choice) -->
+      <div id="role-features-container" class="relative w-full min-h-[500px]">
+        {Object.entries(content.homeFeatures).map(([role, sections]) => (
+          <div data-role-content={role} class="hidden opacity-0 transition-opacity duration-700">
+            {sections.map((section, idx) => (
+              <FeatureSection 
+                tagline={section.tagline}
+                title={section.title}
+                images={idx === 0 ? [feature3, feature1, feature2] : [feature1, feature2, feature3]}
+                layout={idx === 0 ? 'right' : 'left'}
+                reverseStack={idx === 0}
+                tiltDirection={idx === 0 ? 'right' : 'left'}
+                buttonText={section.buttonText}
+                steps={section.steps}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+
 
       <!-- Events Section (Infinite Marquee) - Now part of the fixed background group -->
       <EventsSection 
         tagline="Upcoming Events"
-        title="Never miss a chance to connect."
-        events={[
-          { type: 'image', src: feature1, title: 'Global Tech Summit', subtitle: 'Networking' },
-          { type: 'image', src: feature2, title: 'Freelance Meetup', subtitle: 'Social' },
-          { type: 'image', src: feature3, title: 'Creative Workshop', subtitle: 'Learning' },
-          { type: 'image', src: feature1, title: 'Career Coaching', subtitle: 'Personal Growth' },
-          { type: 'image', src: feature2, title: 'Design Sprint 2024', subtitle: 'Innovation' },
-        ]}
+        title="Global industry events we recommend."
+        events={content.events.map((event, i) => ({
+          type: 'image',
+          src: [feature1, feature2, feature3][i % 3],
+          title: event.title,
+          subtitle: `${event.location} • ${event.focus.split(',')[0]}`,
+        }))}
       />
     </div>
   </main>
 </Layout>
 
-<style>
-  /* Custom animations if extra polish is needed */
-  main {
-    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.2) 100%);
+<script>
+  function applyHomepageRole() {
+    const roleKey = 'wg-user-role';
+    const role = localStorage.getItem(roleKey) || 'job-seeker';
+    const contents = document.querySelectorAll('[data-role-content]');
+
+    contents.forEach(content => {
+      if (content.getAttribute('data-role-content') === role) {
+        content.classList.remove('hidden');
+        // Small timeout to ensure 'hidden' is removed before triggering opacity transition
+        requestAnimationFrame(() => {
+          content.classList.remove('opacity-0');
+        });
+      } else {
+        content.classList.add('hidden', 'opacity-0');
+      }
+    });
   }
-</style>
+
+  // Run on load and handle Astro view transitions
+  document.addEventListener('astro:page-load', applyHomepageRole);
+  applyHomepageRole();
+</script>
