@@ -51,13 +51,13 @@ const {
 ---
 
 <section 
-  class={`w-full py-12 sm:py-24 overflow-visible relative ${bgImage ? 'bg-cover bg-center bg-no-repeat' : ''}`}
+  class={`w-full py-12 sm:py-24 overflow-x-clip overflow-y-visible relative ${bgImage ? 'bg-cover bg-center bg-no-repeat' : ''}`}
   style={bgImage ? `background-image: url(${bgImage});` : `background-color: ${bgColor || 'transparent'};`}
 >
   {bgImage && <div class="absolute inset-0 bg-white/20 backdrop-blur-[2px]"></div>}
 
   <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-12 lg:px-20">
-    <div class="grid lg:grid-cols-2 gap-12 sm:gap-24 lg:items-center">
+    <div class="grid lg:grid-cols-2 gap-10 sm:gap-24 lg:items-center">
       
       <!-- Phone Stack Column (Changes order based on layout) -->
       <div class={`${layout === 'right' ? 'lg:order-2' : 'lg:order-1'}`}>
@@ -76,7 +76,7 @@ const {
         class={`${layout === 'left' ? 'lg:pl-12 lg:order-2' : 'lg:pr-12 lg:order-1'} flex flex-col justify-center ${centered ? 'items-center text-center' : ''}`}
       >
         {tagline && <span class="inline-block text-[#053F5C]/60 font-bold uppercase tracking-[0.3em] text-xs mb-4">{tagline}</span>}
-        <h3 class={`text-3xl sm:text-5xl lg:text-6xl font-bold text-[#053F5C] leading-tight sm:leading-[1.2] lg:leading-[1.1] text-center ${centered ? '' : 'lg:text-left'} ${steps.length > 0 || stats.length > 0 || buttonText ? 'mb-8 sm:mb-10' : ''}`}>
+        <h3 class={`text-2xl sm:text-5xl lg:text-6xl font-bold text-[#053F5C] leading-tight sm:leading-[1.2] lg:leading-[1.1] text-center ${centered ? '' : 'lg:text-left'} break-words ${steps.length > 0 || stats.length > 0 || buttonText ? 'mb-8 sm:mb-10' : ''}`}>
           {title}
         </h3>
 

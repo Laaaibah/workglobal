@@ -201,6 +201,101 @@ export const content = {
         { text: "AI-Assisted Screening", icon: "zap" }
       ]
     }
+  },
+  pricing: {
+    organization: [
+      {
+        id: "starter",
+        name: "STARTER",
+        price: "Free",
+        features: [
+          "1 Job Post Credit (30 days)",
+          "AI Talent Match (Top 5)",
+          "Basic filtration"
+        ],
+        isFeatured: false
+      },
+      {
+        id: "pro",
+        name: "PRO",
+        price: "9,999 PKR / month",
+        features: [
+          "2 Premium Job Posts",
+          "Full candidate contact info",
+          "Direct in-app messaging (10)",
+          "Top Talent Seeker Badge"
+        ],
+        isFeatured: true,
+        isActive: true
+      },
+      {
+        id: "premium",
+        name: "PREMIUM",
+        price: "24,999 PKR / month",
+        features: [
+          "5 Featured Job Posts",
+          "Direct messaging (15)",
+          "AI Filter Search Facility",
+          "AI Video Screening & Grading"
+        ],
+        isFeatured: false
+      },
+      {
+        id: "enterprise",
+        name: "ENTERPRISE",
+        price: "99,000 PKR / month",
+        features: [
+          "20 Job Posts",
+          "Unlimited messaging",
+          "Automated AI shortlisting",
+          "Smart matching",
+          "Hiring pipeline tools"
+        ],
+        isFeatured: false
+      }
+    ],
+    'job-seeker': [
+      {
+        id: "local",
+        name: "LOCAL",
+        price: "Free",
+        features: [
+          "Basic search filters",
+          "Local job listings",
+          "Streak system & basic avatar",
+          "Chatbot assistance",
+          "Limited AI cover letter help"
+        ],
+        isFeatured: false
+      },
+      {
+        id: "pro",
+        name: "PRO",
+        price: "2,800 PKR / month",
+        features: [
+          "Verification Status badge",
+          "International & Local jobs",
+          "Advanced filters & avatar",
+          "Initiate chats with employers",
+          "Video redo options",
+          "Full AI Career Coach access"
+        ],
+        isFeatured: true,
+        isActive: true
+      },
+      {
+        id: "nextgen",
+        name: "NEXT GEN",
+        price: "From 1,500 PKR",
+        features: [
+          "Student Pro: 1,800 PKR",
+          "Supported Pro: 1,500 PKR",
+          "Leveling the playing field",
+          "All Pro features included"
+        ],
+        isFeatured: false
+      }
+    ]
   }
 };
 

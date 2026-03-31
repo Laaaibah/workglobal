@@ -212,9 +212,39 @@ const { title, navActive = 'home' } = Astro.props;
     <script is:inline>
       (() => {
         const gateKey = 'wg-user-role';
+        const expiryMs = 10 * 60 * 1000; // 10 minutes
+
+        const readStored = () => {
+          try {
+            const raw = window.localStorage.getItem(gateKey);
+            return raw ? JSON.parse(raw) : null;
+          } catch (e) {
+            return null;
+          }
+        };
+
+        const writeStored = (role) => {
+          const payload = { role, ts: Date.now() };
+          try {
+            window.localStorage.setItem(gateKey, JSON.stringify(payload));
+          } catch (e) {
+            // ignore
+          }
+        };
+
+        const clearStored = () => {
+          try { window.localStorage.removeItem(gateKey); } catch (e) {}
+        };
+
+        const isExpired = (payload) => {
+          if (!payload || !payload.ts) return false;
+          return (Date.now() - payload.ts) > expiryMs;
+        };
 
         const applyGateState = () => {
-          const selectedRole = window.localStorage.getItem(gateKey);
+          const payload = readStored();
+          if (payload && isExpired(payload)) clearStored();
+          const selectedRole = (readStored() || {}).role;
           document.body.classList.toggle('gate-open', !selectedRole);
         };
 
@@ -223,7 +253,7 @@ const { title, navActive = 'home' } = Astro.props;
             button.addEventListener('click', () => {
               const role = button.getAttribute('data-role');
               if (!role) return;
-              window.localStorage.setItem(gateKey, role);
+              writeStored(role);
               applyGateState();
             });
           });
@@ -234,6 +264,7 @@ const { title, navActive = 'home' } = Astro.props;
           applyGateState();
         });
 
+        // initial client boot
         setupGateActions();
         applyGateState();
       })();

@@ -1,7 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import content from '../data/content.js';
 import bgImage from '../assets/homepage.png?url';
 import layeryBg from '../assets/background.png?url';
+
+const orgPlans     = content.pricing.organization;
+const seekerPlans  = content.pricing['job-seeker'];
 ---
 
 <Layout title="WorkGlobal - Pricing" navActive="pricing">
@@ -13,306 +17,443 @@ import layeryBg from '../assets/background.png?url';
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
-      opacity: 1;
       z-index: -1;
       pointer-events: none;
     }
   </style>
-
   <div class="bg-layer"></div>
 
-  <main class="w-full relative flex flex-col items-center justify-center overflow-x-hidden">
-    
-    <!-- Hero Section: Like index.astro -->
-    <section class="relative w-full flex flex-col items-center justify-center overflow-hidden min-h-screen md:min-h-[56.25vw]">
-      <!-- Full Background Image -->
+  <main class="w-full relative flex flex-col items-center overflow-x-hidden">
+
+    <!-- Hero image -->
+    <section class="relative w-full overflow-hidden min-h-screen md:min-h-[56.25vw]">
       <div class="absolute inset-0 z-0">
-        <img 
-          src={bgImage} 
-          alt="" 
-          class="w-full h-full object-cover md:h-auto md:object-contain object-center"
-        />
+        <img src={bgImage} alt="" class="w-full h-full object-cover md:h-auto md:object-contain object-center"/>
       </div>
     </section>
 
-    <!-- Pricing Content Section -->
-    <div 
-      class="relative w-full flex-1 py-12 flex flex-col items-center justify-start z-10 -mt-16 md:-mt-32"
-    >
+    <!-- Content -->
+    <div class="relative w-full flex flex-col items-center z-10 -mt-16 md:-mt-32 pb-24">
 
-      <!-- Slider Tabs (Drag & Drop Timeline) -->
-      <div class="relative w-full max-w-3xl mx-auto mb-16 px-4 select-none touch-none" id="pricing-slider-container">
-        <!-- Connecting Line Background-->
-        <div class="absolute top-[102px] left-[2%] right-[2%] h-[8px] bg-[#053F5C] z-0 rounded-full timeline-line"></div>
-        
-        <!-- Draggable Thumb (The Pill) -->
-        <div id="slider-thumb" class="absolute top-[106px] -translate-y-1/2 left-1/2 -translate-x-1/2 w-8 h-12 sm:w-10 sm:h-16 bg-[#86C5FF] rounded-[2rem] border-[4px] border-white shadow-[0_8px_15px_rgba(134,197,255,0.6)] cursor-grab active:cursor-grabbing z-20 transition-all duration-300"></div>
-        
-        <div class="flex justify-between items-start relative z-10 w-full h-full pointer-events-none">
-          <!-- PRO Label Area -->
-          <div class="flex flex-col items-center flex-1 relative cursor-pointer pointer-events-auto pricing-click-area group" data-index="0">
-            <div class="h-32 sm:h-36 w-full"></div>
-            <div class="-translate-x-4 sm:-translate-x-3">
-              <span class="pricing-label text-sm sm:text-base font-bold text-[#053F5C] mt-2 transition-all duration-300 uppercase group-hover:scale-105 opacity-70">PRO</span>
-            </div>
-          </div>
-          
-          <!-- BASIC Label Area -->
-          <div class="flex flex-col items-center flex-1 relative cursor-pointer pointer-events-auto pricing-click-area group" data-index="1">
-            <div class="h-32 sm:h-36 w-full"></div>
-            <span class="pricing-label text-lg sm:text-xl font-bold bg-[#E3F1FB] text-[#053F5C] px-5 sm:px-6 py-2 rounded-xl mt-0 transition-all duration-300 uppercase shadow-sm scale-110">BASIC</span>
-          </div>
+      <!-- Title — sits BELOW the hero overlap -->
+      <h2 class="text-3xl md:text-5xl font-black text-[#053F5C] text-center uppercase tracking-wide mt-36 mb-6 px-4 drop-shadow-sm">
+        Our Pricing Plans
+      </h2>
 
-          <!-- ENTERPRISE Label Area -->
-          <div class="flex flex-col items-center flex-1 relative cursor-pointer pointer-events-auto pricing-click-area group" data-index="2">
-            <div class="h-32 sm:h-36 w-full"></div>
-            <div class="translate-x-4 sm:translate-x-3">
-              <span class="pricing-label text-sm sm:text-base font-bold text-[#053F5C] mt-2 transition-all duration-300 uppercase group-hover:scale-105 opacity-70">ENTERPRISE</span>
-            </div>
+      <!-- ====== JOB SEEKER ====== -->
+      <div id="js-pricing" class="pg-section w-full flex flex-col items-center">
+        <!-- Timeline slider -->
+        <div class="pg-slider" data-count="3">
+          <div class="pg-line"></div>
+          <div class="pg-thumb"></div>
+          <div class="pg-labels">
+            {seekerPlans.map((p, i) => (
+              <div class="pg-label-area" data-index={i}>
+                <div class="pg-label-gap"></div>
+                <span class={`pg-label ${i === 1 ? 'pg-label-on' : ''}`}>{p.name}</span>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-
-      <!-- Carousel / Slider -->
-      <div class="relative w-full max-w-6xl mx-auto overflow-hidden px-0 md:px-12 py-8">
-        <div class="slider-track flex items-center transition-transform duration-500 ease-out" data-active="1">
-          
-          <!-- Card 1: PRO -->
-          <div class="pricing-card w-full md:w-1/3 flex-shrink-0 px-4 transition-all duration-500 inactive">
-            <div class="bg-white/95 backdrop-blur-sm rounded-[2rem] p-8 flex flex-col items-center text-center border border-white/40 min-h-[400px]">
-              <h3 class="text-3xl font-extrabold text-[#FA9A3E] mb-8 mt-4 tracking-wide">29$/month</h3>
-              <ul class="text-left space-y-5 text-[15px] text-gray-800 w-full px-2">
-                <li class="flex items-start"><span class="mr-3 font-bold text-black text-lg leading-none">✓</span> Dedicated account manager</li>
-                <li class="flex items-start"><span class="mr-3 font-bold text-black text-lg leading-none">✓</span> Full API access & integrations</li>
-                <li class="flex items-start"><span class="mr-3 font-bold text-black text-lg leading-none">✓</span> Advanced security & compliance</li>
-                <li class="flex items-start"><span class="mr-3 font-bold text-black text-lg leading-none">✓</span> Team collaboration tools</li>
-                <li class="flex items-start"><span class="mr-3 font-bold text-black text-lg leading-none">✓</span> Tailored onboarding & training</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Card 2: BASIC -->
-          <div class="pricing-card w-full md:w-1/3 flex-shrink-0 px-4 transition-all duration-500 active">
-            <div class="relative rounded-[2rem] p-10 flex flex-col items-center justify-center text-center overflow-hidden min-h-[440px] border border-white border-opacity-50"
-                 style="background: linear-gradient(135deg, #ffffff 0%, #E3F1FB 100%);">
-              <!-- Swirl decoration for Basic inside card -->
-              <div class="absolute inset-0 bg-cover bg-bottom opacity-20 mix-blend-multiply pointer-events-none" style={`background-image: url(${layeryBg});`}></div>
-              
-              <div class="relative z-10 w-full h-full flex flex-col items-center justify-center">
-                <h3 class="text-5xl font-extrabold text-[#FA9A3E] tracking-wider drop-shadow-sm">0$/month</h3>
+        <!-- Cards -->
+        <div class="pg-viewport w-full overflow-hidden md:overflow-visible">
+          <div class="pg-stage flex" data-active="1">
+            {seekerPlans.map((p, i) => (
+              <div class={`pg-slot pg-slot3 ${i === 1 ? 'pg-on' : 'pg-off'}`} data-idx={i}>
+              <div class="pg-card">
+                <div class="pg-card-bg" style={`background-image:url(${layeryBg})`}></div>
+                <div class="pg-card-inner">
+                  <div class="pg-plan-name">{p.name}</div>
+                  <div class="pg-plan-price">{p.price}</div>
+                  {p.features.length > 0 && (
+                    <ul class="pg-plan-features">
+                      {p.features.map(f => (
+                        <li><span class="pg-check">✓</span><span>{f}</span></li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
             </div>
+            ))}
           </div>
-
-          <!-- Card 3: ENTERPRISE -->
-          <div class="pricing-card w-full md:w-1/3 flex-shrink-0 px-4 transition-all duration-500 inactive">
-            <div class="bg-white/95 backdrop-blur-sm rounded-[2rem] p-8 flex flex-col items-center text-center border border-white/40 min-h-[400px]">
-              <h3 class="text-2xl font-extrabold text-[#FA9A3E] mb-8 mt-4 tracking-wide uppercase">Custom Pricing</h3>
-              <ul class="text-left space-y-5 text-[15px] text-gray-800 w-full px-2">
-                <li class="flex items-start"><span class="mr-3 font-bold text-black text-lg leading-none">✓</span> Dedicated account manager</li>
-                <li class="flex items-start"><span class="mr-3 font-bold text-black text-lg leading-none">✓</span> Full API access & integrations</li>
-                <li class="flex items-start"><span class="mr-3 font-bold text-black text-lg leading-none">✓</span> Advanced security & compliance</li>
-                <li class="flex items-start"><span class="mr-3 font-bold text-black text-lg leading-none">✓</span> Team collaboration tools</li>
-                <li class="flex items-start"><span class="mr-3 font-bold text-black text-lg leading-none">✓</span> Tailored onboarding & training</li>
-              </ul>
-            </div>
-          </div>
-
         </div>
       </div>
 
-      <!-- Start Free Trial Button -->
-      <div class="mt-8 mb-16 relative z-10">
-        <a href="/trial" class="inline-block bg-[#86C5FF] text-[#053F5C] font-extrabold text-xl md:text-2xl px-12 py-5 rounded-[1.25rem] shadow-[0_8px_25px_rgba(134,197,255,0.5)] hover:shadow-[0_12px_35px_rgba(134,197,255,0.7)] hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest">
-          Start Free Trial
-        </a>
+      <!-- ====== ORGANIZATION ====== -->
+      <div id="org-pricing" class="pg-section w-full flex flex-col items-center">
+        <!-- Timeline slider -->
+        <div class="pg-slider" data-count="4">
+          <div class="pg-line"></div>
+          <div class="pg-thumb"></div>
+          <div class="pg-labels">
+            {orgPlans.map((p, i) => (
+              <div class="pg-label-area" data-index={i}>
+                <div class="pg-label-gap"></div>
+                <span class={`pg-label ${i === 1 ? 'pg-label-on' : ''}`}>{p.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <!-- Cards -->
+        <div class="pg-viewport w-full overflow-hidden md:overflow-visible">
+          <div class="pg-stage flex" data-active="1">
+            {orgPlans.map((p, i) => (
+              <div class={`pg-slot pg-slot4 ${i === 1 ? 'pg-on' : 'pg-off'}`} data-idx={i}>
+              <div class="pg-card">
+                <div class="pg-card-bg" style={`background-image:url(${layeryBg})`}></div>
+                <div class="pg-card-inner">
+                  <div class="pg-plan-name">{p.name}</div>
+                  <div class="pg-plan-price">{p.price}</div>
+                  {p.features.length > 0 && (
+                    <ul class="pg-plan-features">
+                      {p.features.map(f => (
+                        <li><span class="pg-check">✓</span><span>{f}</span></li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+            </div>
+            ))}
+          </div>
+        </div>
       </div>
 
+      <!-- CTA -->
+      <div class="mt-14">
+        <a href="/trial" class="inline-block bg-[#86C5FF] text-[#053F5C] font-extrabold text-xl px-12 py-5 rounded-[1.25rem] shadow-[0_8px_25px_rgba(134,197,255,0.5)] hover:shadow-[0_12px_35px_rgba(134,197,255,0.7)] hover:-translate-y-1 transition-all duration-300 uppercase tracking-widest">
+          Get Started Now
+        </a>
+      </div>
     </div>
   </main>
 </Layout>
 
-<style>
-  /* Base Track Transform Strategy */
-  /* On Mobile: Cards are 100% width, translates by 100vw */
-  @media (max-width: 767px) {
-    .slider-track[data-active="0"] { transform: translateX(0%); }
-    .slider-track[data-active="1"] { transform: translateX(-100%); }
-    .slider-track[data-active="2"] { transform: translateX(-200%); }
-  }
+<style is:global>
 
-  /* On Desktop: Cards stay exactly where they are, and scale in place */
-  @media (min-width: 768px) {
-    .slider-track { transform: translateX(0) !important; }
-  }
+/* ── sections ──────────────────────────────── */
+.pg-section          { display: none; }
+.pg-section.pg-show  { display: flex; flex-direction: column; align-items: center; }
 
-  /* Inactive / Active Card Scaling */
-  .pricing-card.active {
-    transform: scale(1.05);
-    opacity: 1;
-    z-index: 20;
+/* ── slider ────────────────────────────────── */
+.pg-slider {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto 0;
+  padding: 0 24px;
+  user-select: none; touch-action: none;
+}
+.pg-line {
+  position: absolute;
+  top: 62px; left: 9%; right: 9%;
+  height: 8px;
+  background: #053F5C;
+  border-radius: 999px;
+  z-index: 0;
+}
+.pg-thumb {
+  position: absolute;
+  top: 66px; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 34px; height: 50px;
+  background: #86C5FF;
+  border-radius: 2rem;
+  border: 4px solid white;
+  box-shadow: 0 6px 18px rgba(134,197,255,0.7);
+  cursor: grab; z-index: 20;
+  transition: left 0.4s cubic-bezier(0.25,1,0.5,1);
+}
+.pg-thumb:active { cursor: grabbing; }
+
+.pg-labels {
+  display: flex; justify-content: space-between;
+  width: 100%; position: relative; z-index: 10;
+  pointer-events: none;
+}
+.pg-label-area {
+  display: flex; flex-direction: column; align-items: center;
+  flex: 1; cursor: pointer; pointer-events: auto;
+}
+/* gap pushes label BELOW the thumb */
+.pg-label-gap { height: 96px; }
+
+.pg-label {
+  font-size: 0.68rem; font-weight: 700;
+  color: #053F5C; text-transform: uppercase;
+  letter-spacing: 0.08em; opacity: 0.42;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.pg-label-on {
+  font-size: 0.9rem; font-weight: 900;
+  opacity: 1;
+}
+
+/* ── stage (card row) ──────────────────────── */
+.pg-stage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 16px 64px;      /* top padding so popped card doesn't invade slider */
+  overflow: visible;
+}
+
+/* ── slots ─────────────────────────────────── */
+.pg-slot {
+  flex-shrink: 0;
+  cursor: pointer;
+  transition:
+    transform 0.55s cubic-bezier(0.34, 1.45, 0.64, 1),
+    opacity   0.4s ease,
+    filter    0.4s ease;
+}
+
+/* 3-plan layout: each ~26% of container */
+.pg-slot3 { width: 26%; padding: 0 10px; }
+/* 4-plan layout: each ~21% of container */
+.pg-slot4 { width: 21%; padding: 0 8px; }
+
+/* ── POP: selected card ─ rises slightly, full color ── */
+.pg-on {
+  transform: scale(1.1) translateY(-15px);
+  opacity: 1;
+  z-index: 30;
+  filter: none;
+}
+
+/* ── BACK: inactive cards ── shrink, fade, desaturate ── */
+.pg-off {
+  transform: scale(0.85) translateY(15px);
+  opacity: 0.35;
+  z-index: 5;
+  filter: saturate(0.2) blur(2px);
+}
+.pg-off:hover {
+  opacity: 0.6;
+  filter: saturate(0.5) blur(0px);
+  transform: scale(0.88) translateY(10px);
+}
+
+/* ── card box ─────────────────────────────── */
+.pg-card {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  min-height: 420px; /* Standardized height for all cards */
+  display: flex; flex-direction: column;
+  border: 1.5px solid rgba(255,255,255,0.7);
+  box-shadow: 0 10px 40px rgba(5,63,92,0.06);
+  background: rgba(255,255,255,0.98);
+  backdrop-filter: blur(15px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* gradient bg revealed when parent is .pg-on */
+.pg-card-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+/* selected card: simple soft blue as requested ── */
+.pg-on .pg-card {
+  background: linear-gradient(135deg, rgba(134,197,255,0.4) 0%, rgba(134,197,255,0.2) 100%);
+  border-color: rgba(134,197,255,0.5);
+  box-shadow: 0 20px 50px rgba(134,197,255,0.2);
+}
+.pg-on .pg-card-bg {
+  opacity: 0.1;
+  mix-blend-mode: overlay;
+}
+
+/* ── card content ─────────────────────────── */
+.pg-card-inner {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 40px 28px 36px;
+  flex: 1;
+}
+
+.pg-plan-name {
+  font-size: 0.75rem; font-weight: 800;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: #053F5C; opacity: 0.7;
+  margin-bottom: 12px;
+}
+.pg-on .pg-plan-name { color: #053F5C; opacity: 1; }
+
+.pg-plan-price {
+  font-size: 1.85rem; font-weight: 950;
+  color: #053F5C; line-height: 1.15;
+  margin-bottom: 24px;
+}
+
+/* selected card price: dark again for readability on light BG */
+.pg-on .pg-plan-price {
+  font-size: 2.3rem; 
+  color: #053F5C;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.pg-plan-features {
+  list-style: none; padding: 0; margin: 0;
+  text-align: left; width: 100%;
+}
+.pg-plan-features li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 1.05rem; 
+  font-weight: 700;   
+  color: #1b3a50;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(5,63,92,0.08);
+}
+.pg-on .pg-plan-features li {
+  color: #1b3a50; 
+  border-bottom-color: rgba(5,63,92,0.12);
+}
+.pg-plan-features li:last-child { border-bottom: none; }
+
+.pg-check {
+  font-weight: 950; color: #053F5C;
+  font-size: 1.1rem; flex-shrink: 0; margin-top: 1px;
+}
+.pg-on .pg-check { color: #053F5C; }
+
+/* mobile: single card active only */
+@media (max-width: 767px) {
+  .pg-stage { 
+    display: flex;
+    justify-content: center;
+    width: 100% !important;
+    transform: none !important;
+    padding: 20px 0 60px;
   }
   
-  .pricing-card.inactive {
-    transform: scale(0.85);
-    opacity: 0.6;
-    z-index: 10;
+  /* Hide inactive cards on mobile for absolute clarity */
+  .pg-slot {
+    display: none !important;
+    width: 100% !important;
+    padding: 0 16px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
   }
+
+  .pg-slot.pg-on {
+    display: block !important;
+    opacity: 1;
+    animation: fadeIn 0.4s forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Make pop effect subtle on mobile */
+  .pg-on .pg-card {
+    transform: none !important;
+    border-width: 1.5px;
+  }
+}
+
+/* 4-card org layout: desktop tweaks */
+@media (min-width: 768px) {
+  .pg-stage { width: 100%; }
+  .pg-slot4 .pg-plan-price { font-size: 1.45rem; margin-bottom: 16px; }
+  .pg-slot4 .pg-on .pg-plan-price { font-size: 1.85rem; }
+  .pg-slot4 .pg-plan-features li { font-size: 0.95rem; padding: 8px 0; }
+  .pg-slot4 .pg-card { min-height: 420px; } 
+}
+
 </style>
 
 <script>
-  function setupPricingSlider() {
-    const container = document.getElementById('pricing-slider-container');
-    const thumb = document.getElementById('slider-thumb');
-    const slider = document.querySelector('.slider-track');
-    const cards = document.querySelectorAll('.pricing-card');
-    const labels = document.querySelectorAll('.pricing-label');
-    const clickAreas = document.querySelectorAll('.pricing-click-area');
+  function setupPricing() {
+    const sections: Record<string, HTMLElement | null> = {
+      'job-seeker':   document.getElementById('js-pricing'),
+      'organization': document.getElementById('org-pricing'),
+    };
+    if (!sections['job-seeker'] || !sections['organization']) return;
 
-    if (!container || !thumb || !slider) return;
+    /* ── show section based on saved role ─*/
+    const role = localStorage.getItem('wg-user-role') || 'job-seeker';
+    Object.entries(sections).forEach(([k, el]) => el?.classList.toggle('pg-show', k === role));
 
-    let isDragging = false;
-    let currentIndex = 1;
+    /* ── each slider wrapper ── */
+    document.querySelectorAll<HTMLElement>('.pg-slider').forEach(slider => {
+      const count   = parseInt(slider.dataset.count ?? '3');
+      const thumb   = slider.querySelector<HTMLElement>('.pg-thumb')!;
+      const section = slider.parentElement!;
+      const slots   = section.querySelectorAll<HTMLElement>('.pg-slot');
+      const labels  = slider.querySelectorAll<HTMLElement>('.pg-label');
+      const areas   = slider.querySelectorAll<HTMLElement>('.pg-label-area');
+      if (!thumb || !slots.length) return;
 
-    // The snap positions in percentage of container width
-    const snapPositions = [16.666, 50, 83.333];
+      const snaps = Array.from({ length: count }, (_, i) =>
+        (100 / count) * i + (100 / count) / 2
+      );
 
-    // Function to update visual state based on index
-    function setPosition(index, animate = true) {
-      if (index < 0) index = 0;
-      if (index > 2) index = 2;
-      currentIndex = index;
+      function go(idx: number, animate = true) {
+        idx = Math.max(0, Math.min(count - 1, idx));
+        thumb.style.transition = animate ? 'left 0.4s cubic-bezier(0.25,1,0.5,1)' : 'none';
+        thumb.style.left = snaps[idx] + '%';
 
-      // Move thumb gracefully
-      thumb.style.transition = animate ? 'left 0.4s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
-      thumb.style.left = `${snapPositions[index]}%`;
+        // Update track for mobile visibility
+        const track = section.querySelector<HTMLElement>('.pg-stage');
+        if (track) track.setAttribute('data-active', idx.toString());
 
-      // Update Labels
-      labels.forEach((label, i) => {
-        if (i === index) {
-          label.className = 'pricing-label text-lg sm:text-xl font-bold bg-[#E3F1FB] text-[#053F5C] px-5 sm:px-6 py-2 rounded-xl mt-0 transition-all duration-300 uppercase shadow-sm scale-110';
-        } else {
-          label.className = 'pricing-label text-xs sm:text-sm font-bold text-[#053F5C] mt-2 transition-all duration-300 uppercase scale-100 opacity-70 hover:opacity-100';
-        }
+        labels.forEach((l, i) => l.classList.toggle('pg-label-on', i === idx));
+        slots.forEach((s, i) => {
+          s.classList.toggle('pg-on', i === idx);
+          s.classList.toggle('pg-off', i !== idx);
+        });
+      }
+
+      go(1, false); // start on Pro
+
+      areas.forEach((a, i) => a.addEventListener('click', () => go(i)));
+      slots.forEach((s, i) => s.addEventListener('click',  () => go(i)));
+
+      /* drag */
+      let drag = false, sx = 0, sp = 0;
+      thumb.addEventListener('pointerdown', e => {
+        drag = true; thumb.style.transition = 'none';
+        sx = e.clientX;
+        const wr = slider.getBoundingClientRect();
+        const tr = thumb.getBoundingClientRect();
+        sp = ((tr.left + tr.width / 2) - wr.left) / wr.width * 100;
+        document.addEventListener('pointermove', mv, { passive: false });
+        document.addEventListener('pointerup', up);
       });
-
-      // Update Cards
-      slider.setAttribute('data-active', index.toString());
-      cards.forEach((c, i) => {
-        if (i === index) {
-          c.classList.add('active');
-          c.classList.remove('inactive');
-        } else {
-          c.classList.remove('active');
-          c.classList.add('inactive');
-        }
-      });
-    }
-
-    // Initialize to BASIC (index 1)
-    setPosition(1, false);
-
-    // Make areas clickable to jump thumb to position
-    clickAreas.forEach((area, index) => {
-      area.addEventListener('click', () => {
-        setPosition(index);
-      });
+      function mv(e: PointerEvent) {
+        if (!drag) return;
+        if (e.cancelable) e.preventDefault();
+        const wr = slider.getBoundingClientRect();
+        let p = sp + ((e.clientX - sx) / wr.width) * 100;
+        p = Math.max(4, Math.min(96, p));
+        thumb.style.left = p + '%';
+      }
+      function up() {
+        if (!drag) return; drag = false;
+        document.removeEventListener('pointermove', mv);
+        document.removeEventListener('pointerup', up);
+        const wr = slider.getBoundingClientRect();
+        const tr = thumb.getBoundingClientRect();
+        const p  = ((tr.left + tr.width / 2) - wr.left) / wr.width * 100;
+        let best = 0, bd = 999;
+        snaps.forEach((s, i) => { const d = Math.abs(p - s); if (d < bd) { bd = d; best = i; }});
+        go(best);
+      }
     });
-
-    // Drag Logic using Pointer Events
-    let startX = 0;
-    let startLeftPct = 0;
-
-    function onPointerDown(e) {
-      isDragging = true;
-      thumb.style.transition = 'none'; // disable transition while dragging
-      thumb.classList.add('cursor-grabbing', 'scale-95');
-      thumb.classList.remove('cursor-grab');
-      
-      startX = e.clientX || (e.touches && e.touches.length > 0 ? e.touches[0].clientX : 0);
-      
-      // Calculate current left percentage natively
-      const containerRect = container.getBoundingClientRect();
-      const thumbRect = thumb.getBoundingClientRect();
-      // Center of thumb relative to container
-      const currentPixels = (thumbRect.left + thumbRect.width / 2) - containerRect.left;
-      startLeftPct = (currentPixels / containerRect.width) * 100;
-      
-      document.addEventListener('pointermove', onPointerMove, { passive: false });
-      document.addEventListener('pointerup', onPointerUp);
-      document.addEventListener('pointercancel', onPointerUp);
-      
-      if (e.type === 'touchstart') {
-        document.addEventListener('touchmove', onPointerMove, { passive: false });
-        document.addEventListener('touchend', onPointerUp);
-        document.addEventListener('touchcancel', onPointerUp);
-      }
-    }
-
-    function onPointerMove(e) {
-      if (!isDragging) return;
-      
-      const currentX = e.clientX || (e.touches && e.touches.length > 0 ? e.touches[0].clientX : 0);
-      const deltaX = currentX - startX;
-      
-      const containerRect = container.getBoundingClientRect();
-      const deltaPct = (deltaX / containerRect.width) * 100;
-      
-      let newLeftPct = startLeftPct + deltaPct;
-      
-      // Prevent scrolling if user is dragging horizontally
-      if (Math.abs(deltaX) > 5 && e.cancelable) {
-          e.preventDefault();
-      }
-      
-      // Clamp bounds slightly outside snap points for bounce effect
-      if (newLeftPct < 10) newLeftPct = 10;
-      if (newLeftPct > 90) newLeftPct = 90;
-      
-      thumb.style.left = `${newLeftPct}%`;
-    }
-
-    function onPointerUp(e) {
-      if (!isDragging) return;
-      isDragging = false;
-      thumb.classList.remove('cursor-grabbing', 'scale-95');
-      thumb.classList.add('cursor-grab');
-      
-      document.removeEventListener('pointermove', onPointerMove);
-      document.removeEventListener('pointerup', onPointerUp);
-      document.removeEventListener('pointercancel', onPointerUp);
-      document.removeEventListener('touchmove', onPointerMove);
-      document.removeEventListener('touchend', onPointerUp);
-      document.removeEventListener('touchcancel', onPointerUp);
-      
-      // Determine nearest snap point based on dropped position
-      const containerRect = container.getBoundingClientRect();
-      const thumbRect = thumb.getBoundingClientRect();
-      const finalX = (thumbRect.left + thumbRect.width / 2) - containerRect.left;
-      const finalPct = (finalX / containerRect.width) * 100;
-      
-      // Find nearest index
-      let closestIndex = 0;
-      let minDiff = Math.abs(finalPct - snapPositions[0]);
-      
-      for(let i = 1; i < snapPositions.length; i++) {
-        const diff = Math.abs(finalPct - snapPositions[i]);
-        if (diff < minDiff) {
-          minDiff = diff;
-          closestIndex = i;
-        }
-      }
-      
-      // Snap to closest position
-      setPosition(closestIndex);
-    }
-
-    thumb.addEventListener('pointerdown', onPointerDown);
-    thumb.addEventListener('touchstart', onPointerDown, {passive: false});
   }
 
-  // Run immediately and after View Transitions
-  setupPricingSlider();
-  document.addEventListener('astro:page-load', setupPricingSlider);
-  document.addEventListener('astro:after-swap', setupPricingSlider);
+  setupPricing();
+  document.addEventListener('astro:page-load', setupPricing);
 </script>
