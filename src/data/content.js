@@ -296,6 +296,18 @@ export const content = {
         isFeatured: false
       }
     ]
+  },
+  banners: {
+    organization: {
+      title: "Where Organization Meets Job Seeker",
+      quote: '"I hire people brighter than me and then I get out of their way." – Lee Iacocca.',
+      description: "(Lee had the right idea, but finding those bright people used to take a lot of coffee and patience. Not anymore. Hire diverse talent in minutes. Hire World-Class Talent in Minutes, Not Months. Replace expensive agencies and outdated job boards with instant, AI-driven matchmaking. Because reading 400 badly formatted resumes is a terrible way to spend your Tuesday)"
+    },
+    'job-seeker': {
+      title: "Where Job Seeker meets the Organization",
+      quote: '"Choose a job you love, and you will never have to work a day in your life." – Confucius.',
+      description: "(And if Confucius had Workglobal, he would have found that job on his lunch break.) Workglobal was founded on a simple, radical premise: a person's potential should not be dictated by their location. We are building an ecosystem that fundamentally shifts the power dynamic back to the people, creating a world where career advancement is determined purely by skill, compatibility, and drive"
+    }
   }
 };
 

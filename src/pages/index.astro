@@ -163,33 +163,35 @@ const appStoreBadge = "https://tools.applemediaservices.com/api/badges/download-
         buttonText=""
       />
 
-      <!-- Branding Banner -->
-      <section class="relative w-full py-20 px-4 sm:px-12 bg-[#8dc8ee] flex flex-col items-center justify-center text-center overflow-hidden isolate" data-aos="fade-up">
-        <!-- Logo Icons on sides as large background-like decorations -->
-        <img src={logoIcon} alt="" class="absolute left-[-5%] top-1/2 -translate-y-1/2 w-48 sm:w-80 h-auto opacity-10 pointer-events-none -z-10 blur-[1px] rotate-[-15deg] hidden lg:block" />
-        <img src={logoIcon} alt="" class="absolute right-[-5%] top-1/2 -translate-y-1/2 w-48 sm:w-80 h-auto opacity-10 pointer-events-none -z-10 blur-[1px] rotate-[15deg] hidden lg:block" />
-
-        <div class="max-w-4xl mx-auto space-y-6">
-          <h2 class="text-2xl sm:text-5xl font-black text-[#053F5C] tracking-tight break-words">Where global matching meets local talent.</h2>
-          
-          <h3 class="text-xl sm:text-2xl font-bold text-[#053F5C] leading-snug">
-            We are the network for the global generation, connecting millions of jobseekers to world-class employers.
-          </h3>
-          
-          <p class="text-lg text-[#053F5C]/80 font-medium leading-relaxed max-w-3xl mx-auto">
-            Our mission is clear: to break down borders and create a transparent, fast-track hiring process. By using advanced matching algorithms, we empower you to find opportunities that actually fit your profile—no hidden biases, just real connections.
-          </p>
-          
-          <div class="mt-10">
-            <span class="text-lg font-bold text-[#053F5C]">Join the mission today. <a href="https://instagram.com" class="text-white hover:underline">Download the app</a> and start your journey.</span>
-          </div>
-        </div>
-      </section>
-
       <!-- Role-Based Features Wrapper (Content toggled by entry gate choice) -->
       <div id="role-features-container" class="relative w-full">
         {Object.entries(content.homeFeatures).map(([role, sections]) => (
           <div data-role-content={role} class="hidden opacity-0 transition-opacity duration-700 w-full flex flex-col">
+            <!-- Dynamic Branding Banner -->
+            <section class="relative w-full py-20 px-4 sm:px-12 bg-[#8dc8ee] flex flex-col items-center justify-center text-center overflow-hidden isolate" data-aos="fade-up">
+              <!-- Logo Icons on sides -->
+              <img src={logoIcon} alt="" class="absolute left-[-5%] top-1/2 -translate-y-1/2 w-48 sm:w-80 h-auto opacity-10 pointer-events-none -z-10 blur-[1px] rotate-[-15deg] hidden lg:block" />
+              <img src={logoIcon} alt="" class="absolute right-[-5%] top-1/2 -translate-y-1/2 w-48 sm:w-80 h-auto opacity-10 pointer-events-none -z-10 blur-[1px] rotate-[15deg] hidden lg:block" />
+
+              <div class="max-w-4xl mx-auto space-y-6">
+                <h2 class="text-2xl sm:text-5xl font-black text-[#053F5C] tracking-tight break-words">
+                  {content.banners[role as keyof typeof content.banners].title}
+                </h2>
+                
+                <h3 class="text-xl sm:text-2xl font-bold text-[#053F5C] leading-snug italic">
+                  {content.banners[role as keyof typeof content.banners].quote}
+                </h3>
+                
+                <p class="text-lg text-[#053F5C]/80 font-medium leading-relaxed max-w-3xl mx-auto">
+                  {content.banners[role as keyof typeof content.banners].description}
+                </p>
+                
+                <div class="mt-10">
+                  <span class="text-lg font-bold text-[#053F5C]">Join the mission today. <a href="https://instagram.com" class="text-white hover:underline">Download the app</a> and start your journey.</span>
+                </div>
+              </div>
+            </section>
+
             {sections.map((section, idx) => (
               <FeatureSection 
                 tagline={section.tagline}
