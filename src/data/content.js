@@ -81,34 +81,34 @@ export const content = {
   homeFeatures: {
     organization: [
       {
-        tagline: "Hire Excellence",
+        tagline: " ",
         title: "Unlock world-class talent.",
         buttonText: "Post a Job",
         steps: [
           {
-            number: "01",
+            number: "",
             title: "Instant AI Talent Match",
             description: "Stop searching; start swiping. Our AI instantly analyzes our talent pool to serve up the Top 5 candidates who perfectly match your requirements."
           },
           {
-            number: "02",
+            number: "",
             title: "AI First-Round Video Screening",
             description: "Save time with automated video pitches. Our AI pre-grades communication and core competencies so you only interview the top 5% of talent."
           }
         ]
       },
       {
-        tagline: "Scale Faster",
+        tagline: "",
         title: "Precision matching for recruiters.",
         buttonText: "Learn More",
         steps: [
           {
-            number: "03",
+            number: "",
             title: "Direct In-App Messaging",
             description: "We killed the email thread. Once a match is made, chat directly with candidates, schedule interviews, and build connections instantly inside the app."
           },
           {
-            number: "04",
+            number: "",
             title: "Advanced Pipeline Filters",
             description: "Drill down to the exact persona you need. Advanced tech filters let you find senior developers with specific stacks and local preferences easily."
           }
@@ -117,34 +117,34 @@ export const content = {
     ],
     'job-seeker': [
       {
-        tagline: "Discover Success",
+        tagline: " ",
         title: "Your global journey starts here.",
         buttonText: "Explore Jobs",
         steps: [
           {
-            number: "01",
+            number: " ",
             title: "Swipe. Match. Work",
             description: "Our AI summarizes job descriptions into bite-sized cards. Swipe right to apply to 50 highly-curated jobs while waiting for your morning coffee."
           },
           {
-            number: "02",
+            number: " ",
             title: "Gamify Your Grind",
             description: "Build your login streak to boost your profile in the algorithm. Watch your Avatar evolve as you conquer the global job market through activity."
           }
         ]
       },
       {
-        tagline: "Connect & Earn",
+        tagline: " ",
         title: "Global pay for global talent.",
         buttonText: "Get Started",
         steps: [
           {
-            number: "03",
+            number: " ",
             title: "The AI Cover Letter Builder",
             description: "Generate professional, tailored cover letters instantly with simple prompts. Pro users can rewrite and tweak their letters endlessly for perfection."
           },
           {
-            number: "04",
+            number: "",
             title: "The Video Interview Vault",
             description: "Practice your video interviews in our secure vault. Record, review, and use your redo option to ensure you submit the perfect pitch every time."
           }
@@ -195,10 +195,10 @@ export const content = {
       title: "The Workglobal Way",
       items: [
         { text: "Video pitches matter most", icon: "video" },
-        { text: "Pre-vetted, highly curated batches", icon: "check-circle" },
+        // text: "Pre-vetted, highly curated batches", icon: "check-circle" },
         { text: "AI Instant Matching!", icon: "sparkles" },
         { text: "Hiring = Global & Borderless", icon: "globe" },
-        { text: "AI-Assisted Screening", icon: "zap" }
+        //{ text: "AI-Assisted Screening", icon: "zap" }
       ]
     }
   },
