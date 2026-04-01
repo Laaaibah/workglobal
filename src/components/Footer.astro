@@ -10,9 +10,9 @@ import whitelogo from '../assets/whitelogo.png?url';
   {/* Footer container with padding */}
   <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-14 sm:pt-20 md:pt-24 pb-4 sm:pb-6 md:pb-8">
     {/* Main footer content */}
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-4 sm:mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.2fr_1.6fr_1.2fr] gap-4 sm:gap-10 mb-4 sm:mb-10 items-center">
       {/* Left section - Logo and tagline */}
-      <div class="flex flex-col justify-center order-1 sm:order-1">
+      <div class="flex flex-col justify-center items-start order-1 sm:order-1 lg:mt-6">
         <img 
           src={whitelogo} 
           alt="WorkGlobal - Swipe. Match. Work" 
@@ -21,7 +21,7 @@ import whitelogo from '../assets/whitelogo.png?url';
       </div>
 
       {/* Center section - Newsletter input */}
-      <div class="flex items-center justify-center order-3 sm:order-2 col-span-1 sm:col-span-1 lg:col-span-1">
+      <div class="flex items-center justify-center order-3 sm:order-2 col-span-1 sm:col-span-1 lg:col-span-1 lg:mt-6">
         <div class="flex w-full max-w-sm">
           <input 
             type="email" 
@@ -35,11 +35,14 @@ import whitelogo from '../assets/whitelogo.png?url';
       </div>
 
       {/* Right section - Navigation links */}
-      <div class="flex flex-col justify-center items-start sm:items-end space-y-0.5 sm:space-y-1 order-2 sm:order-3 col-span-1 sm:col-span-1">
+      <div class="flex flex-col justify-center items-end text-right space-y-0.5 sm:space-y-1 order-2 sm:order-3 col-span-1 sm:col-span-1">
         <a href="/" class="hover:underline transition-all text-xs sm:text-sm md:text-base">→ HOME</a>
         <a href="/about" class="hover:underline transition-all text-xs sm:text-sm md:text-base">→ ABOUT US</a>
         <a href="/pricing" class="hover:underline transition-all text-xs sm:text-sm md:text-base">→ PRICING</a>
         <a href="/support" class="hover:underline transition-all text-xs sm:text-sm md:text-base">→ SUPPORT CENTER</a>
+        <a href="/jobs" class="hover:underline transition-all text-xs sm:text-sm md:text-base">→ JOB DIRECTORY</a>
+        <a href="/recruit" class="hover:underline transition-all text-xs sm:text-sm md:text-base">→ RECRUITER HUB</a>
+        <a href="/stories" class="hover:underline transition-all text-xs sm:text-sm md:text-base">→ SUCCESS STORIES</a>
       </div>
     </div>
 

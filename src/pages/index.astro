@@ -150,15 +150,15 @@ const appStoreBadge = "https://tools.applemediaservices.com/api/badges/download-
       <!-- Swipe effect -->
       <FeatureSection 
         tagline=""
-        title="Connecting Talent To Global Opportunities"
+        title="Match <br/> Beyond <br/> Borders"
         images={[feature1, feature2, feature3]}
         layout="left"
         swipeable={true}
         centered={true}
         steps={[]}
         stats={[
-          { icon: 'globe', value: '600,000', label: 'Successes' },
-          { icon: 'heart', value: '15 million', label: 'Jobseekers' }
+          { icon: 'globe', value: '10,000 +', label: 'Companies' },
+          { icon: 'heart', value: '2 Million +', label: 'Jobseekers' }
         ]}
         buttonText=""
       />
@@ -178,7 +178,7 @@ const appStoreBadge = "https://tools.applemediaservices.com/api/badges/download-
                   {content.banners[role as keyof typeof content.banners].title}
                 </h2>
                 
-                <h3 class="text-xl sm:text-2xl font-bold text-[#053F5C] leading-snug italic">
+                <h3 class="text-2xl sm:text-xl font-bold text-[#053F5C] leading-snug italic">
                   {content.banners[role as keyof typeof content.banners].quote}
                 </h3>
                 
@@ -210,7 +210,7 @@ const appStoreBadge = "https://tools.applemediaservices.com/api/badges/download-
               <ComparisonSection title="Recruiting is evolving." />
             ) : (
               <EventsSection 
-                tagline="Upcoming Events"
+                tagline=" "
                 title="Global industry events we recommend."
                 events={content.events.map((event, i) => ({
                   type: 'image',

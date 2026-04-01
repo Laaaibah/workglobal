@@ -87,11 +87,13 @@ export const content = {
         steps: [
           {
             number: "",
+            icon: "sparkles",
             title: "Instant AI Talent Match",
             description: "Stop searching; start swiping. Our AI instantly analyzes our talent pool to serve up the Top 5 candidates who perfectly match your requirements."
           },
           {
             number: "",
+            icon: "video",
             title: "AI First-Round Video Screening",
             description: "Save time with automated video pitches. Our AI pre-grades communication and core competencies so you only interview the top 5% of talent."
           }
@@ -104,11 +106,13 @@ export const content = {
         steps: [
           {
             number: "",
+            icon: "megaphone",
             title: "Direct In-App Messaging",
             description: "We killed the email thread. Once a match is made, chat directly with candidates, schedule interviews, and build connections instantly inside the app."
           },
           {
             number: "",
+            icon: "search",
             title: "Advanced Pipeline Filters",
             description: "Drill down to the exact persona you need. Advanced tech filters let you find senior developers with specific stacks and local preferences easily."
           }
@@ -123,11 +127,13 @@ export const content = {
         steps: [
           {
             number: " ",
+            icon: "sparkles",
             title: "Swipe. Match. Work",
             description: "Our AI summarizes job descriptions into bite-sized cards. Swipe right to apply to 50 highly-curated jobs while waiting for your morning coffee."
           },
           {
             number: " ",
+            icon: "zap",
             title: "Gamify Your Grind",
             description: "Build your login streak to boost your profile in the algorithm. Watch your Avatar evolve as you conquer the global job market through activity."
           }
@@ -140,11 +146,13 @@ export const content = {
         steps: [
           {
             number: " ",
+            icon: "file-text",
             title: "The AI Cover Letter Builder",
             description: "Generate professional, tailored cover letters instantly with simple prompts. Pro users can rewrite and tweak their letters endlessly for perfection."
           },
           {
             number: "",
+            icon: "video",
             title: "The Video Interview Vault",
             description: "Practice your video interviews in our secure vault. Record, review, and use your redo option to ensure you submit the perfect pitch every time."
           }
@@ -301,12 +309,12 @@ export const content = {
     organization: {
       title: "Where Organization Meets Job Seeker",
       quote: '"I hire people brighter than me and then I get out of their way." – Lee Iacocca.',
-      description: "(Lee had the right idea, but finding those bright people used to take a lot of coffee and patience. Not anymore. Hire diverse talent in minutes. Hire World-Class Talent in Minutes, Not Months. Replace expensive agencies and outdated job boards with instant, AI-driven matchmaking. Because reading 400 badly formatted resumes is a terrible way to spend your Tuesday)"
+      description: "Lee had the right idea, but finding those bright people used to take a lot of coffee and patience. Not anymore. Hire diverse talent in minutes. Hire World-Class Talent in Minutes, Not Months. Replace expensive agencies and outdated job boards with instant, AI-driven matchmaking. Because reading 400 badly formatted resumes is a terrible way to spend your Tuesday"
     },
     'job-seeker': {
-      title: "Where Job Seeker meets the Organization",
+      title: "Where Job Seekers meet Organizations",
       quote: '"Choose a job you love, and you will never have to work a day in your life." – Confucius.',
-      description: "(And if Confucius had Workglobal, he would have found that job on his lunch break.) Workglobal was founded on a simple, radical premise: a person's potential should not be dictated by their location. We are building an ecosystem that fundamentally shifts the power dynamic back to the people, creating a world where career advancement is determined purely by skill, compatibility, and drive"
+      description: "And if Confucius had Workglobal, he would have found that job on his lunch break. Workglobal was founded on a simple, radical premise: a person's potential should not be dictated by their location. We are building an ecosystem that fundamentally shifts the power dynamic back to the people, creating a world where career advancement is determined purely by skill, compatibility, and drive"
     }
   }
 };
