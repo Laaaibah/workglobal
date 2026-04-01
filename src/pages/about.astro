@@ -338,10 +338,12 @@ const positions = [
       .orbit-scene::after {
         display: none;
       }
-      .card-slot {
+      .card-slot,
+      .card-slot:nth-child(n) {
         position: static;
         width: 100%;
         animation: none;
+        transform: none;
       }
 
       .card-slot.active .card-body {
