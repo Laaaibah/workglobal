@@ -37,7 +37,7 @@ const seekerPlans  = content.pricing['job-seeker'];
 
       <!-- Title — sits BELOW the hero overlap -->
       <h2 class="text-3xl md:text-5xl font-black text-[#053F5C] text-center uppercase tracking-wide mt-36 mb-6 px-4 drop-shadow-sm">
-        Our Pricing Plans
+        Invest in Your Global Career.
       </h2>
 
       <!-- ====== JOB SEEKER ====== -->
@@ -383,7 +383,22 @@ const seekerPlans  = content.pricing['job-seeker'];
     if (!sections['job-seeker'] || !sections['organization']) return;
 
     /* ── show section based on saved role ─*/
-    const role = localStorage.getItem('wg-user-role') || 'job-seeker';
+    let role: 'job-seeker' | 'organization' = 'job-seeker';
+    try {
+      const raw = localStorage.getItem('wg-user-role');
+      if (raw) {
+        if (raw === 'job-seeker' || raw === 'organization') {
+          role = raw;
+        } else {
+          const parsed = JSON.parse(raw);
+          if (parsed?.role === 'job-seeker' || parsed?.role === 'organization') {
+            role = parsed.role;
+          }
+        }
+      }
+    } catch (e) {
+      // Ignore malformed localStorage payload and keep default role.
+    }
     Object.entries(sections).forEach(([k, el]) => el?.classList.toggle('pg-show', k === role));
 
     /* ── each slider wrapper ── */

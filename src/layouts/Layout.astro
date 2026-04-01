@@ -25,19 +25,23 @@ const { title, navActive = 'home' } = Astro.props;
     <script>
       import AOS from 'aos';
       import 'aos/dist/aos.css';
-      
-      document.addEventListener('DOMContentLoaded', () => {
+
+      const initAOS = () => {
         AOS.init({
           duration: 1000,
           easing: 'ease-in-out',
           once: false,
         });
-      });
+      };
+
+      document.addEventListener('astro:page-load', initAOS);
+      initAOS();
     </script>
   </head>
   <body class="flex flex-col min-h-screen">
     <div id="entry-gate" class="entry-gate" role="dialog" aria-modal="true" aria-labelledby="entry-gate-title">
       <div class="entry-gate-card">
+        <h2 id="entry-gate-title" class="sr-only">Choose your WorkGlobal role</h2>
         <div class="entry-gate-logo-wrap">
           <img src={logoIcon} alt="WorkGlobal icon" class="entry-gate-logo" />
         </div>
@@ -59,6 +63,8 @@ const { title, navActive = 'home' } = Astro.props;
     <style is:global>
       .site-shell {
         min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
         transition: filter 0.35s ease;
       }
 
@@ -210,9 +216,39 @@ const { title, navActive = 'home' } = Astro.props;
     <script is:inline>
       (() => {
         const gateKey = 'wg-user-role';
+        const expiryMs = 10 * 60 * 1000; // 10 minutes
+
+        const readStored = () => {
+          try {
+            const raw = window.localStorage.getItem(gateKey);
+            return raw ? JSON.parse(raw) : null;
+          } catch (e) {
+            return null;
+          }
+        };
+
+        const writeStored = (role) => {
+          const payload = { role, ts: Date.now() };
+          try {
+            window.localStorage.setItem(gateKey, JSON.stringify(payload));
+          } catch (e) {
+            // ignore
+          }
+        };
+
+        const clearStored = () => {
+          try { window.localStorage.removeItem(gateKey); } catch (e) {}
+        };
+
+        const isExpired = (payload) => {
+          if (!payload || !payload.ts) return false;
+          return (Date.now() - payload.ts) > expiryMs;
+        };
 
         const applyGateState = () => {
-          const selectedRole = window.localStorage.getItem(gateKey);
+          const payload = readStored();
+          if (payload && isExpired(payload)) clearStored();
+          const selectedRole = (readStored() || {}).role;
           document.body.classList.toggle('gate-open', !selectedRole);
         };
 
@@ -221,7 +257,7 @@ const { title, navActive = 'home' } = Astro.props;
             button.addEventListener('click', () => {
               const role = button.getAttribute('data-role');
               if (!role) return;
-              window.localStorage.setItem(gateKey, role);
+              writeStored(role);
               applyGateState();
             });
           });
@@ -232,6 +268,7 @@ const { title, navActive = 'home' } = Astro.props;
           applyGateState();
         });
 
+        // initial client boot
         setupGateActions();
         applyGateState();
       })();

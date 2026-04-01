@@ -9,6 +9,10 @@ import logoIcon from '../assets/logo icon hi.png?url';
 import feature1 from '../assets/image1.jpeg?url';
 import feature2 from '../assets/image2.jpeg?url';
 import feature3 from '../assets/image3.jpeg?url';
+import swipe1 from '../assets/swipe1.png?url';
+import swipe2 from '../assets/swipe2.png?url';
+import swipe3 from '../assets/swipe3.png?url';
+import swipe4 from '../assets/swipe4.png?url';
 import pageBg from '../assets/background.png?url';
 import { content } from '../data/content';
 
@@ -150,8 +154,8 @@ const appStoreBadge = "https://tools.applemediaservices.com/api/badges/download-
       <!-- Swipe effect -->
       <FeatureSection 
         tagline=""
-        title="Match <br/> Beyond <br/> Borders"
-        images={[feature1, feature2, feature3]}
+        title="Stop Applying. <br/> Start Matching."
+        images={[swipe1, swipe2, swipe3, swipe4]}
         layout="left"
         swipeable={true}
         centered={true}
@@ -230,7 +234,22 @@ const appStoreBadge = "https://tools.applemediaservices.com/api/badges/download-
 <script>
   function applyHomepageRole() {
     const roleKey = 'wg-user-role';
-    const role = localStorage.getItem(roleKey) || 'job-seeker';
+    let role = 'job-seeker';
+    try {
+      const raw = localStorage.getItem(roleKey);
+      if (raw) {
+        if (raw === 'job-seeker' || raw === 'organization') {
+          role = raw;
+        } else {
+          const parsed = JSON.parse(raw);
+          if (parsed?.role === 'job-seeker' || parsed?.role === 'organization') {
+            role = parsed.role;
+          }
+        }
+      }
+    } catch (e) {
+      // Ignore malformed localStorage payload and keep default role.
+    }
     const contents = document.querySelectorAll('[data-role-content]');
 
     contents.forEach(content => {

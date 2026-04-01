@@ -3,7 +3,7 @@ export const content = {
     contact: {
       email: 'hello@workglobal.ai',
       number: '+ 923011181118',
-      location: 'G7/2, Islamabad Pakistan'
+      location: 'Islamabad Pakistan'
     },
     organization: {
       faqs: [
@@ -122,7 +122,7 @@ export const content = {
     'job-seeker': [
       {
         tagline: " ",
-        title: "Your global journey starts here.",
+        title: "Swipe Right on Your Next Career.",
         buttonText: "Explore Jobs",
         steps: [
           {
@@ -141,7 +141,7 @@ export const content = {
       },
       {
         tagline: " ",
-        title: "Global pay for global talent.",
+        title: "Swipe Your Way Out of the Global Market.",
         buttonText: "Get Started",
         steps: [
           {

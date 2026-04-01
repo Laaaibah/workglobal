@@ -18,5 +18,24 @@
     font-family: 'Inter', sans-serif;
     letter-spacing: -0.5px;
   }
+
+  .bg-layer {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  @media (max-width: 1024px), (hover: none), (pointer: coarse) {
+    .bg-layer {
+      background-attachment: scroll !important;
+      background-position: center top !important;
+      background-size: cover !important;
+    }
+  }
 }
 
