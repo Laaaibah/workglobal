@@ -56,7 +56,6 @@ const positions = [
     :root {
       --navy: #053F5C;
       --light-blue: #86C5FF;
-      --orange: #FFA62B;
       --bg: #ddeef8;
     }
 
@@ -185,10 +184,7 @@ const positions = [
       }
     }
 
-    /* subtle orbit ring behind the cards */
-    .orbit-ring {
-      display: none;
-    }
+
 
     /* ── cards positioned absolutely ── */
     .card-slot {
@@ -502,8 +498,7 @@ const positions = [
     <!-- Globe + Cards -->
     <div class="orbit-scene">
 
-      <!-- Subtle orbit ellipse ring -->
-      <div class="orbit-ring"></div>
+
 
       <!-- Blue circle in center -->
       <div class="globe-wrap"></div>
@@ -524,7 +519,7 @@ const positions = [
           `}
         >
           <div class="card-body">
-            <TeamCard name={member.name} role={member.role} image={member.image} bg={bgImage} />
+            <TeamCard name={member.name} image={member.image} />
           </div>
         </button>
       ))}
