@@ -384,6 +384,10 @@ const positions = [
       background-size: cover;
     }
 
+    .member-screen-card.is-unilever {
+      background-color: #fff;
+    }
+
     .member-screen-avatar {
       width: 100%;
       height: 100%;
@@ -441,9 +445,15 @@ const positions = [
       }
 
       .member-screen-card {
-        max-width: 280px;
+        width: 100%;
+        max-width: 320px;
         margin: 0 auto;
         min-height: 200px;
+      }
+
+      .member-screen-card.is-unilever {
+        background-size: 135% 100%;
+        background-position: center;
       }
 
       .member-screen-avatar {
@@ -532,6 +542,7 @@ const positions = [
         const closeDetails = () => {
           cards.forEach((c) => c.classList.remove('active'));
           cardEl.style.backgroundImage = 'none';
+          cardEl.classList.remove('is-unilever');
           avatarEl.removeAttribute('aria-label');
           screen.hidden = true;
           activeCard = null;
@@ -556,6 +567,8 @@ const positions = [
             const image = card.getAttribute('data-member-image') || '';
 
             textEl.textContent = details;
+
+            cardEl.classList.toggle('is-unilever', name === 'Unilever');
 
             if (image) {
               cardEl.style.backgroundImage = `url("${image}")`;
