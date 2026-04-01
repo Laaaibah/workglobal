@@ -1,0 +1,99 @@
+---
+// TeamCard.astro — reusable team member card
+// Props: name, role, image (optional path)
+
+interface Props {
+  name: string;
+  role: string;
+  image?: string;
+}
+
+const { name, role, image } = Astro.props;
+---
+
+<div class="team-card">
+  <div class="avatar-wrap">
+    {image
+      ? <img src={image} alt={name} class="avatar-img" />
+      : <div class="avatar-placeholder"></div>
+    }
+  </div>
+  <p class="member-name">{name}</p>
+  <span class="member-role">{role}</span>
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap');
+
+  .team-card {
+    background: linear-gradient(180deg, #EAF9FF 0%, #D8F1FF 100%);
+    border-radius: 16px;
+    padding: 20px 14px 18px;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 120px;
+    box-shadow: 0 4px 20px rgba(5, 63, 92, 0.12);
+    font-family: 'Nunito', sans-serif;
+    /* cards are positioned absolutely by the parent page */
+  }
+  .avatar-wrap {
+    width: 104px;
+    height: 64px;
+    border-radius: 0;
+    overflow: visible;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    padding: 0;
+  }
+
+  .avatar-img {
+    width: 92%;
+    height: auto;
+    max-height: 64px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    background: transparent;
+  }
+
+  /* Placeholder uses a subtle horizontal light-blue gradient, not a circle */
+  .avatar-placeholder {
+    width: 92%;
+    height: 48px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #DFF6FF 0%, #CFEFFE 100%);
+    display: block;
+  }
+
+  .member-name {
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: #053F5C;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+    margin: 8px 0 0;
+  }
+
+  .member-role {
+    display: inline-block;
+    background: linear-gradient(90deg, rgb(62, 134, 198) 0%, rgb(166, 102, 170) 24.44045608108108%, rgb(236, 68, 146) 50.77597128378378%, rgb(238, 68, 84) 75.87274774774775%, rgb(240, 84, 39) 100%);
+    color: #ffffff;
+    font-size: 0.6rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    line-height: 1;
+    margin-top: 4px;
+  }
+</style>

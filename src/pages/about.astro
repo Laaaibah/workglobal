@@ -6,9 +6,9 @@ import TeamCard from '../components/TeamCard.astro';
 import unilever from '../assets/unilever.png?url';
 import careem from '../assets/careem.png?url';
 import qatarairways from '../assets/qatarairways.png?url';
-import engro from '../assets/engro.png?url';
-import systemslimited from '../assets/Nestle.png?url';
-import jazz from '../assets/jazz.png?url';
+import engro from '../assets/engro.jpg?url';
+import systemslimited from '../assets/nestle.jpg?url';
+import jazz from '../assets/jazz.jpg?url';
 import farmfoods from '../assets/farmfoods.png?url';
 import tesco from '../assets/tesco.png?url';
 
@@ -195,7 +195,7 @@ const positions = [
       position: absolute;
       /* fixed card size for consistent layout */
       width: 140px !important;
-      height: 180px !important;
+      height: 140px !important;
       z-index: 4;
       animation: card-float 3s ease-in-out infinite;
       will-change: transform;
@@ -306,18 +306,6 @@ const positions = [
       .orbit-scene::after {
         bottom: 16%;
       }
-    }
-
-    /* Larger Jazz logo: target the card by its data attribute */
-    .card-slot[data-member-name="Jazz"] .avatar-wrap {
-      width: 110px;
-      height: 64px;
-    }
-
-    .card-slot[data-member-name="Jazz"] .avatar-img {
-      width: 96%;
-      height: 96%;
-      object-fit: contain;
     }
 
     .orbit-scene::before {
